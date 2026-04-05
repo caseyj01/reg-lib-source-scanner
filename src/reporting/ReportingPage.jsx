@@ -3,6 +3,7 @@ import { SOURCES }           from '../lib/sources.js';
 import { deepSearch }        from '../lib/deepSearch.js';
 import { useNotifications }  from './components/BackgroundTaskManager.jsx';
 import { FloatingPaths }          from './components/FloatingPaths.jsx';
+import { BackgroundGradientGlow } from '../components/ui/background-gradient-glow.jsx';
 import seedUrls               from './data/seedData.json';
 import webFindings            from './data/webFindings.json';
 
@@ -387,7 +388,7 @@ export function ReportingPage() {
       </header>
 
       {/* ── Scan Results ────────────────────────────────────────────────────── */}
-      <div className="rp-body">
+      <BackgroundGradientGlow className="rp-body">
 
           {/* Action bar */}
           <div className="rp-action-bar">
@@ -459,7 +460,7 @@ export function ReportingPage() {
             />
           </div>
 
-      </div>
+      </BackgroundGradientGlow>
 
       {/* ── History drawer ───────────────────────────────────────────────────── */}
       {showHistory && (

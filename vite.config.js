@@ -61,6 +61,9 @@ function extensionScriptsPlugin() {
 
 export default defineConfig({
   plugins: [react(), extensionScriptsPlugin()],
+  resolve: {
+    alias: { '@': resolve(__dirname, 'src') },
+  },
   // Use relative base so script/css paths in the popup HTML are relative,
   // which is required for chrome-extension:// page loads.
   base: './',

@@ -199,10 +199,19 @@ html, body {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 10px 10px 16px;
+  display: flex;
+  flex-direction: column;
+  /* gradient wrapper fills the flex slot */
+}
+
+/* The inner z-10 div from BackgroundGradientGlow carries the padding/layout */
+.rp-body > div[class*="z-0"] + div,
+.rp-body > .relative.z-10 {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 10px 10px 16px;
 }
 
 /* ── Action bar ─────────────────────────────────────────────────────────────── */
