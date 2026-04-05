@@ -267,7 +267,7 @@ export function ReportingPage() {
       <header className="rp-header">
         <div className="rp-brand">VIXIO REGULATORY INTELLIGENCE</div>
         <h1 className="rp-title">Banking Regulation Finder</h1>
-        <p className="rp-subtitle">Live web scan for new documents not yet in your library.</p>
+        <p className="rp-subtitle">Live web scan for new documents not yet in the reg library.</p>
         <div className="rp-header-actions">
           <button className="rp-hbtn" onClick={handleRun} disabled={isScanning}>
             {isScanning ? 'Scanning…' : 'Run Scan'}
