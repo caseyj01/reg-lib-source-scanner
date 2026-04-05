@@ -173,13 +173,69 @@ function downloadCSV(rows, filename) {
   URL.revokeObjectURL(link.href);
 }
 
+// ── Resizable table wrapper ───────────────────────────────────────────────────
+function ResizableTable({ children, defaultHeight = 260, minHeight = 120 }) {
+  const [height, setHeight] = React.useState(defaultHeight);
+  const dragRef = React.useRef(null);
+
+  function onMouseDown(e) {
+    e.preventDefault();
+    const startY  = e.clientY;
+    const startH  = height;
+
+    function onMove(ev) {
+      const next = Math.max(minHeight, startH + (ev.clientY - startY));
+      setHeight(next);
+    }
+    function onUp() {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    }
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  }
+
+  function onTouchStart(e) {
+    const startY = e.touches[0].clientY;
+    const startH = height;
+
+    function onMove(ev) {
+      const next = Math.max(minHeight, startH + (ev.touches[0].clientY - startY));
+      setHeight(next);
+    }
+    function onEnd() {
+      window.removeEventListener('touchmove', onMove);
+      window.removeEventListener('touchend', onEnd);
+    }
+    window.addEventListener('touchmove', onMove, { passive: false });
+    window.addEventListener('touchend', onEnd);
+  }
+
+  return (
+    <div className="doc-table-resizable">
+      <div className="doc-table-wrap" style={{ maxHeight: height }}>
+        {children}
+      </div>
+      <div
+        ref={dragRef}
+        className="doc-table-drag-handle"
+        onMouseDown={onMouseDown}
+        onTouchStart={onTouchStart}
+        title="Drag to resize"
+      >
+        <span className="doc-table-drag-grip" />
+      </div>
+    </div>
+  );
+}
+
 // ── Results table ─────────────────────────────────────────────────────────────
 function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
   if (!rows || rows.length === 0) {
     return <div className="table-empty">{emptyMsg}</div>;
   }
   return (
-    <div className="doc-table-wrap">
+    <ResizableTable>
       <table className="doc-table">
         <thead>
           <tr>
@@ -226,7 +282,7 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
           ))}
         </tbody>
       </table>
-    </div>
+    </ResizableTable>
   );
 }
 

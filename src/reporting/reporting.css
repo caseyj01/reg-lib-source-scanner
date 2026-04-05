@@ -342,11 +342,37 @@ html, body {
 }
 
 /* ── Table ──────────────────────────────────────────────────────────────────── */
+.doc-table-resizable {
+  display: flex;
+  flex-direction: column;
+}
+
 .doc-table-wrap {
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 260px;
 }
+
+.doc-table-drag-handle {
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ns-resize;
+  background: #f0f4f8;
+  border-top: 1px solid #e2e8f0;
+  user-select: none;
+  flex-shrink: 0;
+}
+.doc-table-drag-handle:hover { background: #e2e8f0; }
+
+.doc-table-drag-grip {
+  display: block;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: #cbd5e1;
+}
+.doc-table-drag-handle:hover .doc-table-drag-grip { background: #94a3b8; }
 .doc-table {
   width: 100%;
   border-collapse: collapse;
