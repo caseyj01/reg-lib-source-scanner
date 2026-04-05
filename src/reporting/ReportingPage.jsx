@@ -162,43 +162,9 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
   );
 }
 
-// ── Current Reg Docs tab ──────────────────────────────────────────────────────
-function CurrentDocsTab() {
-  return (
-    <div className="rp-body">
-      <div className="rp-panel">
-        <div className="rp-panel-head">
-          <div className="rp-panel-title">Current Regulatory Documents</div>
-          <div className="rp-panel-sub">
-            {seedUrls.length.toLocaleString()} URLs in your library — scan results are deduplicated against this list.
-          </div>
-        </div>
-      </div>
-      <div className="rp-panel">
-        <div className="rp-panel-head">
-          <div className="rp-panel-title">Monitored Sources</div>
-          <div className="rp-panel-sub">{SOURCES.length} sources used as scan context</div>
-        </div>
-        <div className="source-list">
-          {SOURCES.map(s => (
-            <div key={s.id} className="source-row">
-              <span className="source-region">{s.region}</span>
-              <div className="source-info">
-                <div className="source-name" title={s.label}>{s.label}</div>
-                <div className="source-reg">{s.regulator}</div>
-              </div>
-              <a href={s.url} target="_blank" rel="noreferrer" className="source-link">Visit</a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ═════════════════════════════════════════════════════════════════════════════
 export function ReportingPage() {
-  const [tab,      setTab]      = useState('docs');
+
   const [phase,    setPhase]    = useState('idle');
   const [progress, setProgress] = useState({ done: 0, total: SCAN_TARGETS.length, source: '', found: 0 });
   const [findings, setFindings] = useState([]);
@@ -285,30 +251,8 @@ export function ReportingPage() {
         </div>
       </header>
 
-      {/* ── Tabs ────────────────────────────────────────────────────────────── */}
-      <div className="rp-tabs-bar">
-        <div className="rp-tabs">
-          <button
-            className={`rp-tab ${tab === 'current' ? 'rp-tab--active' : ''}`}
-            onClick={() => setTab('current')}
-          >
-            Current Reg Docs
-          </button>
-          <button
-            className={`rp-tab rp-tab--green ${tab === 'docs' ? 'rp-tab--active-green' : ''}`}
-            onClick={() => setTab('docs')}
-          >
-            Scan Results
-          </button>
-        </div>
-      </div>
-
-      {/* ── Current Reg Docs tab ────────────────────────────────────────────── */}
-      {tab === 'current' && <CurrentDocsTab />}
-
-      {/* ── Scan Results tab ────────────────────────────────────────────────── */}
-      {tab === 'docs' && (
-        <div className="rp-body">
+      {/* ── Scan Results ────────────────────────────────────────────────────── */}
+      <div className="rp-body">
 
           {/* Action bar */}
           <div className="rp-action-bar">
@@ -379,8 +323,7 @@ export function ReportingPage() {
             />
           </div>
 
-        </div>
-      )}
+      </div>
     </div>
   );
 }
