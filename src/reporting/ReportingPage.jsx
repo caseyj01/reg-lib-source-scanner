@@ -185,23 +185,30 @@ export function ReportingPage() {
   // ── Run scan ────────────────────────────────────────────────────────────────
   async function handleRun() {
     if (phase === 'scanning') return;
-    stopRef.current = false;
-    setPhase('scanning');
-    setFindings([]);
-    setProgress({ done: 0, total: SOURCES.length, source: '', found: 0 });
+    try {
+      stopRef.current = false;
+      setPhase('scanning');
+      setFindings([]);
+      setProgress({ done: 0, total: SOURCES.length, source: '', found: 0 });
 
-    const results = await simulateScan(
-      (p) => setProgress({ ...p }),
-      stopRef
-    );
+      const results = await simulateScan(
+        (p) => setProgress({ ...p }),
+        stopRef
+      );
 
-    setFindings(results);
-    setPhase('done');
+      setFindings(results);
+      setPhase('done');
 
-    const msg = `Found ${results.length} similar document${results.length !== 1 ? 's' : ''} online.`;
-    showToast(msg);
-    if (notify) {
-      pushNotify('✅ Scan complete — Reg Library', msg, () => window.focus());
+      const newCount = results.filter(r => !r.alreadyCovered).length;
+      const msg = `Scan complete — ${newCount} new document${newCount !== 1 ? 's' : ''} found.`;
+      showToast(msg);
+      if (notify) {
+        pushNotify('✅ Scan complete — Reg Library', msg, () => window.focus());
+      }
+    } catch (err) {
+      console.error('Scan error:', err);
+      setPhase('idle');
+      showToast('Scan failed: ' + err.message, 'warn');
     }
   }
 
