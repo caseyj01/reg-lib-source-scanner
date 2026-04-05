@@ -13,6 +13,29 @@ const PROXY_TOKEN = import.meta.env.VITE_PROXY_TOKEN ?? '';
 
 const GEMINI_MODEL = 'gemini-2.0-flash';
 
+// ── Input sanitization ────────────────────────────────────────────────────────
+// Strip characters and patterns that could be used for prompt injection.
+const INJECTION_PATTERNS = [
+  /ignore\s+(previous|above|all|prior)/gi,
+  /system\s*prompt/gi,
+  /you\s+are\s+now/gi,
+  /disregard\s+(all|previous)/gi,
+  /new\s+instructions?/gi,
+  /override\s+(your|the)/gi,
+  /<[^>]*>/g,           // HTML tags
+  /[`]{3}/g,            // triple backticks
+  /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, // control characters
+];
+
+function sanitize(str) {
+  if (typeof str !== 'string') return '';
+  let out = str.trim().slice(0, 200); // hard length cap
+  for (const pattern of INJECTION_PATTERNS) {
+    out = out.replace(pattern, '');
+  }
+  return out.trim();
+}
+
 // ── System prompt ─────────────────────────────────────────────────────────────
 function buildSystemPrompt(knownTitles) {
   const exclusionList =
@@ -70,9 +93,13 @@ function parseResults(text) {
  * No API key required in the extension.
  */
 export async function deepSearch({ query, knownTitles = [], region = 'Global', category = 'All' }) {
-  const regionClause   = region !== 'Global' ? ` in the ${region} region` : ' across all regions';
-  const categoryClause = category !== 'All'  ? ` related to ${category}` : '';
-  const userMessage    = `Search the web and find all currently binding banking and financial-services regulations${regionClause}${categoryClause} matching: "${query}". Focus on official regulator websites, government legal portals, and official legal databases. Return the full JSON array as instructed.`;
+  const safeQuery    = sanitize(query);
+  const safeRegion   = sanitize(region);
+  const safeCategory = sanitize(category);
+
+  const regionClause   = safeRegion !== 'Global' ? ` in the ${safeRegion} region` : ' across all regions';
+  const categoryClause = safeCategory !== 'All'  ? ` related to ${safeCategory}` : '';
+  const userMessage    = `Search the web and find all currently binding banking and financial-services regulations${regionClause}${categoryClause} matching: "${safeQuery}". Focus on official regulator websites, government legal portals, and official legal databases. Return the full JSON array as instructed.`;
 
   const geminiBody = {
     contents: [{ role: 'user', parts: [{ text: userMessage }] }],
