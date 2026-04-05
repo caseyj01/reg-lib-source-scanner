@@ -199,15 +199,18 @@ html, body {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  /* gradient wrapper fills the flex slot */
+  position: relative;
+  background: #f8fafc;
 }
 
-/* The inner z-10 div from BackgroundGradientGlow carries the padding/layout */
-.rp-body > div[class*="z-0"] + div,
-.rp-body > .relative.z-10 {
-  flex: 1;
+.bg-gradient-body-wrap {
+  min-height: 100%;
+  position: relative;
+}
+
+.bg-gradient-body-content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;

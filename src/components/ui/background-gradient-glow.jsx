@@ -2,8 +2,8 @@ import { cn } from '@/lib/utils';
 
 export function BackgroundGradientGlow({ className, children }) {
   return (
-    <div className={cn('relative w-full', className)}>
-      {/* Soft morning mist gradient */}
+    <div className={cn('bg-gradient-body-wrap', className)}>
+      {/* Soft Morning Mist Background */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
@@ -20,8 +20,8 @@ export function BackgroundGradientGlow({ className, children }) {
           `,
         }}
       />
-      {/* Content sits above the gradient */}
-      <div className="relative z-10 w-full h-full">
+      {/* Content */}
+      <div className="bg-gradient-body-content">
         {children}
       </div>
     </div>
