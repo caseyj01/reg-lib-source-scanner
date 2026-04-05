@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { SOURCES }           from '../lib/sources.js';
 import { deepSearch }        from '../lib/deepSearch.js';
 import { useNotifications }  from './components/BackgroundTaskManager.jsx';
@@ -10,24 +10,8 @@ const SEED_URLS = new Set(seedUrls.map(u => u.replace('http://', 'https://')));
 // Regions to sweep per scan
 const SCAN_REGIONS = ['Global', 'UK/EU', 'AMER', 'APAC', 'ME/AF'];
 
-// ── API key storage (chrome.storage in extension, localStorage in dev) ────────
-async function loadApiKey() {
-  if (typeof chrome !== 'undefined' && chrome.storage?.local) {
-    return new Promise(resolve =>
-      chrome.storage.local.get('geminiApiKey', d => resolve(d.geminiApiKey || ''))
-    );
-  }
-  return localStorage.getItem('reg-api-key') || '';
-}
-function saveApiKey(key) {
-  if (typeof chrome !== 'undefined' && chrome.storage?.local) {
-    chrome.storage.local.set({ geminiApiKey: key });
-  }
-  localStorage.setItem('reg-api-key', key);
-}
-
-// ── Live web scan via Anthropic API ──────────────────────────────────────────
-async function runWebScan(apiKey, onProgress, stopRef) {
+// ── Live web scan via proxy → Gemini ─────────────────────────────────────────
+async function runWebScan(onProgress, stopRef) {
   const found    = [];
   const seenUrls = new Set();
   const total    = SCAN_REGIONS.length;
@@ -40,10 +24,9 @@ async function runWebScan(apiKey, onProgress, stopRef) {
     try {
       const results = await deepSearch({
         query:       'binding banking and financial services regulations primary secondary legislation',
-        knownTitles: [],   // URL-level dedup below is more reliable
+        knownTitles: [],
         region,
         category:    'Banking',
-        apiKey,
       });
 
       for (const doc of results) {
@@ -189,44 +172,24 @@ export function ReportingPage() {
   const [findings, setFindings] = useState([]);
   const [notify,   setNotify]   = useState(true);
   const [toast,    setToast]    = useState(null);
-  const [apiKey,   setApiKey]   = useState('');
-  const [showKey,  setShowKey]  = useState(false);
-  const [keySaved, setKeySaved] = useState(false);
 
   const stopRef = useRef(false);
   const { notify: pushNotify } = useNotifications();
-
-  // Load persisted API key on mount
-  useEffect(() => {
-    loadApiKey().then(k => { if (k) setApiKey(k); });
-  }, []);
 
   function showToast(msg, type = 'success') {
     setToast({ msg, type });
     setTimeout(() => setToast(null), 6000);
   }
 
-  function handleSaveKey() {
-    saveApiKey(apiKey);
-    setKeySaved(true);
-    setTimeout(() => setKeySaved(false), 2000);
-    setShowKey(false);
-  }
-
   async function handleRun() {
     if (phase === 'scanning') return;
-    if (!apiKey) {
-      setShowKey(true);
-      showToast('Enter your Anthropic API key to run a live web scan.', 'warn');
-      return;
-    }
     try {
       stopRef.current = false;
       setPhase('scanning');
       setFindings([]);
       setProgress({ done: 0, total: SCAN_REGIONS.length, source: '', found: 0 });
 
-      const results = await runWebScan(apiKey, p => setProgress({ ...p }), stopRef);
+      const results = await runWebScan(p => setProgress({ ...p }), stopRef);
 
       setFindings(results);
       setPhase('done');
@@ -253,7 +216,7 @@ export function ReportingPage() {
     ? `${progress.source} (${pct}%)`
     : isDone
       ? `${newFindings.length} new · ${findings.filter(r => r.alreadyCovered).length} already covered`
-      : apiKey ? 'Ready' : 'API key required';
+      : 'Ready';
 
   return (
     <div className="rp-root">
@@ -282,28 +245,7 @@ export function ReportingPage() {
           >
             Export CSV
           </button>
-          <button className={`rp-hbtn ${!apiKey ? 'rp-hbtn--warn' : ''}`} onClick={() => setShowKey(v => !v)}>
-            {apiKey ? '🔑 Key set' : '🔑 Set API key'}
-          </button>
         </div>
-
-        {/* API key input */}
-        {showKey && (
-          <div className="rp-api-key-wrap">
-            <input
-              className="rp-api-key-input"
-              type="password"
-              placeholder="AIza…"
-              value={apiKey}
-              onChange={e => setApiKey(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleSaveKey()}
-              autoFocus
-            />
-            <button className="rp-api-key-save" onClick={handleSaveKey}>
-              {keySaved ? '✓ Saved' : 'Save'}
-            </button>
-          </div>
-        )}
       </header>
 
       {/* ── Tabs ────────────────────────────────────────────────────────────── */}

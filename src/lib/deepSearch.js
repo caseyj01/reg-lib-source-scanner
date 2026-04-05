@@ -1,11 +1,17 @@
 /**
- * @fileoverview Deep-search module using the Gemini API with Google Search
- * grounding to discover binding financial-services regulations on the open web.
+ * @fileoverview Deep-search module.
+ * Calls the Vixio Reg Library proxy server, which holds the Gemini API key.
+ * The extension itself never handles or stores any API credentials.
+ *
+ * Configure the proxy URL at build time via:
+ *   VITE_PROXY_URL   (default: http://localhost:3001)
+ *   VITE_PROXY_TOKEN (optional bearer token for auth)
  */
 
-const GEMINI_MODEL   = 'gemini-2.0-flash';
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
-const MAX_TOKENS     = 4000;
+const PROXY_URL   = import.meta.env.VITE_PROXY_URL   ?? 'http://localhost:3001';
+const PROXY_TOKEN = import.meta.env.VITE_PROXY_TOKEN ?? '';
+
+const GEMINI_MODEL = 'gemini-2.0-flash';
 
 // ── System prompt ─────────────────────────────────────────────────────────────
 function buildSystemPrompt(knownTitles) {
@@ -43,12 +49,10 @@ Return ONLY a raw JSON array (no markdown, no preamble). Each object must have e
 
 // ── Response parsing ──────────────────────────────────────────────────────────
 function extractText(responseBody) {
-  // Gemini: candidates[0].content.parts[0].text
   return responseBody?.candidates?.[0]?.content?.parts?.[0]?.text || '';
 }
 
 function parseResults(text) {
-  // Strip markdown fences if Gemini wraps in ```json … ```
   const stripped = text.replace(/```json\s*/gi, '').replace(/```/g, '');
   const match = stripped.match(/\[[\s\S]*\]/);
   if (!match) return [];
@@ -60,68 +64,49 @@ function parseResults(text) {
   }
 }
 
-// ── Key resolution ────────────────────────────────────────────────────────────
-async function resolveKey(apiKey) {
-  if (apiKey) return apiKey;
-  if (typeof chrome !== 'undefined' && chrome.storage?.local) {
-    return new Promise(resolve =>
-      chrome.storage.local.get('geminiApiKey', d => resolve(d.geminiApiKey || ''))
-    );
-  }
-  return localStorage.getItem('reg-api-key') || '';
-}
-
 // ── Core search ───────────────────────────────────────────────────────────────
 /**
- * Search the web for binding regulations via Gemini + Google Search grounding.
- *
- * @param {Object}   options
- * @param {string}   options.query        - Search topic / query.
- * @param {string[]} options.knownTitles  - Titles to exclude (already in library).
- * @param {string}   options.region       - "Global" | "UK/EU" | "AMER" | "APAC" | "ME/AF"
- * @param {string}   options.category     - "Banking" | "All" | etc.
- * @param {string}   [options.apiKey]     - Gemini API key (falls back to storage).
- * @returns {Promise<Object[]>}
+ * Search the web for binding regulations via the Vixio proxy → Gemini.
+ * No API key required in the extension.
  */
-export async function deepSearch({ query, knownTitles = [], region = 'Global', category = 'All', apiKey }) {
-  const key = await resolveKey(apiKey);
-  if (!key) throw new Error('No Gemini API key set. Enter your key (AIza…) in the scanner settings.');
-
+export async function deepSearch({ query, knownTitles = [], region = 'Global', category = 'All' }) {
   const regionClause   = region !== 'Global' ? ` in the ${region} region` : ' across all regions';
   const categoryClause = category !== 'All'  ? ` related to ${category}` : '';
   const userMessage    = `Search the web and find all currently binding banking and financial-services regulations${regionClause}${categoryClause} matching: "${query}". Focus on official regulator websites, government legal portals, and official legal databases. Return the full JSON array as instructed.`;
 
-  const body = {
+  const geminiBody = {
     contents: [{ role: 'user', parts: [{ text: userMessage }] }],
     systemInstruction: { parts: [{ text: buildSystemPrompt(knownTitles) }] },
     tools: [{ googleSearch: {} }],
-    generationConfig: { maxOutputTokens: MAX_TOKENS },
+    generationConfig: { maxOutputTokens: 4000 },
   };
 
-  const response = await fetch(`${GEMINI_API_URL}?key=${key}`, {
+  const headers = { 'Content-Type': 'application/json' };
+  if (PROXY_TOKEN) headers['Authorization'] = `Bearer ${PROXY_TOKEN}`;
+
+  const response = await fetch(`${PROXY_URL}/api/search`, {
     method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify(body),
+    headers,
+    body:    JSON.stringify(geminiBody),
   });
 
   if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`Gemini API error ${response.status}: ${errText}`);
+    const err = await response.json().catch(() => ({}));
+    throw new Error(`Search failed (${response.status}): ${err.error || response.statusText}`);
   }
 
   const data = await response.json();
-  const text = extractText(data);
-  return parseResults(text);
+  return parseResults(extractText(data));
 }
 
 // ── Multi-region sweep ────────────────────────────────────────────────────────
-export async function deepSearchAllRegions({ query, knownTitles = [], category = 'All', onProgress, apiKey }) {
+export async function deepSearchAllRegions({ query, knownTitles = [], category = 'All', onProgress }) {
   const regions    = ['UK/EU', 'AMER', 'APAC', 'ME/AF', 'Global'];
   const allResults = [];
   const seenUrls   = new Set();
 
   for (const region of regions) {
-    const results    = await deepSearch({ query, knownTitles, region, category, apiKey });
+    const results    = await deepSearch({ query, knownTitles, region, category });
     const newResults = results.filter(r => {
       if (!r.sourceUrl || seenUrls.has(r.sourceUrl)) return false;
       seenUrls.add(r.sourceUrl);
