@@ -480,14 +480,15 @@ html, body {
   padding: 1px;
   border: none;
   cursor: pointer;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   transition: background 0.3s;
   white-space: nowrap;
   overflow: hidden;
   flex-shrink: 0;
 }
-.hvbg-outer:hover:not(.hvbg-disabled) { background: rgba(0,0,0,0.55); }
+.hvbg-outer:hover:not(.hvbg-disabled) { background: rgba(255,255,255,0.16); }
 .hvbg-outer.hvbg-disabled { opacity: 0.38; cursor: default; }
 
 .hvbg-glow {
@@ -503,7 +504,7 @@ html, body {
   position: absolute;
   inset: 2px;
   z-index: 1;
-  background: #0f1628;
+  background: transparent;
   border-radius: 9999px;
 }
 .hvbg-content {
@@ -515,6 +516,7 @@ html, body {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.01em;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 /* Scrollbar styling for webkit */
