@@ -467,7 +467,21 @@ export function ReportingPage() {
           <div className="rp-history-drawer" onClick={e => e.stopPropagation()}>
             <div className="rp-history-head">
               <span className="rp-history-title">Scan History</span>
-              <button className="rp-history-close" onClick={() => setShowHistory(false)}>✕</button>
+              <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                {history.length > 0 && (
+                  <button
+                    className="rp-btn rp-btn--ghost"
+                    style={{ fontSize: '11px', padding: '3px 8px' }}
+                    onClick={() => {
+                      localStorage.removeItem(HISTORY_KEY);
+                      setHistory([]);
+                    }}
+                  >
+                    Clear History
+                  </button>
+                )}
+                <button className="rp-history-close" onClick={() => setShowHistory(false)}>✕</button>
+              </div>
             </div>
             {history.length === 0 ? (
               <div className="rp-history-empty">No past scans yet.</div>
