@@ -11,15 +11,13 @@ const SEED_URLS = new Set(seedUrls.map(u => u.replace('http://', 'https://')));
 
 const BANKING_VERTICALS = ['Banking', 'Financial Services'];
 
-// Deduplicate SOURCES by regulator for scan grouping
-// (multiple source entries per regulator → one targeted search each)
-const SCAN_TARGETS = SOURCES.reduce((acc, s) => {
-  const key = `${s.regulator}||${s.region}`;
-  if (!acc.find(t => t.key === key)) {
-    acc.push({ key, regulator: s.regulator, region: s.region, category: s.category });
-  }
-  return acc;
-}, []);
+// Use every SOURCES entry as its own scan target (79 total)
+const SCAN_TARGETS = SOURCES.map(s => ({
+  key:       s.id,
+  regulator: s.regulator,
+  region:    s.region,
+  category:  s.category,
+}));
 
 const CACHE_KEY = 'reglib_scan_cache';
 
