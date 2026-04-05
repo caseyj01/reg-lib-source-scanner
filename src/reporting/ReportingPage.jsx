@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { SOURCES }           from '../lib/sources.js';
 import { deepSearch }        from '../lib/deepSearch.js';
 import { useNotifications }  from './components/BackgroundTaskManager.jsx';
+import { FloatingPaths }     from './components/FloatingPaths.jsx';
 import seedUrls               from './data/seedData.json';
 import webFindings            from './data/webFindings.json';
 
@@ -291,6 +292,9 @@ export function ReportingPage() {
 
       {/* ── Header ──────────────────────────────────────────────────────────── */}
       <header className="rp-header">
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+        <div className="rp-header-content">
         <div className="rp-brand">VIXIO REGULATORY INTELLIGENCE</div>
         <h1 className="rp-title">Banking Regulation Finder</h1>
         <p className="rp-subtitle">Live web scan for new documents not yet in the reg library.</p>
@@ -308,6 +312,7 @@ export function ReportingPage() {
           <span className={`rp-mode-badge ${liveMode ? 'rp-mode-badge--live' : 'rp-mode-badge--demo'}`}>
             {liveMode ? '● Live' : '○ Demo'}
           </span>
+        </div>
         </div>
       </header>
 
