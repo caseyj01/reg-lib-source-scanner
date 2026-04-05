@@ -3,7 +3,7 @@
   "name": "Vixio Reg Library Finder",
   "version": "1.0.0",
   "description": "Scan the web for new regulatory documents not yet in your Vixio compliance library. For authorised Vixio users only.",
-  "permissions": ["storage", "alarms", "activeTab", "scripting", "downloads", "sidePanel", "identity"],
+  "permissions": ["storage", "alarms", "activeTab", "scripting", "downloads", "sidePanel"],
   "host_permissions": ["<all_urls>"],
   "icons": {
     "16":  "icons/icon16.png",

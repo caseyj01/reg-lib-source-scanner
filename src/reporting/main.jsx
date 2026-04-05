@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ReportingPage } from './ReportingPage.jsx';
-import { AuthGate } from './AuthGate.jsx';
 import './reporting.css';
 
 class ErrorBoundary extends React.Component {
@@ -24,9 +23,7 @@ class ErrorBoundary extends React.Component {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <AuthGate>
-        <ReportingPage />
-      </AuthGate>
+      <ReportingPage />
     </ErrorBoundary>
   </React.StrictMode>
 );
