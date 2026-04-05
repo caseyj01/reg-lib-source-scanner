@@ -298,9 +298,7 @@ function HistoryEntry({ entry, defaultOpen = false }) {
         </span>
         <span className="rp-history-meta">
           {entry.newCount} new · {entry.total - entry.newCount} covered
-          <span className={`rp-mode-badge rp-mode-badge--sm ${entry.liveMode ? 'rp-mode-badge--live' : 'rp-mode-badge--demo'}`}>
-            {entry.liveMode ? '● Live' : '○ Demo'}
-          </span>
+          <span className="rp-mode-badge rp-mode-badge--sm rp-mode-badge--live">● Live</span>
         </span>
         <span className="rp-history-chevron">{open ? '▲' : '▼'}</span>
       </button>
@@ -379,7 +377,7 @@ export function ReportingPage() {
       setHistory(loadHistory());
 
       const newCount = results.filter(r => !r.alreadyCovered).length;
-      const msg = `${newCount} new document${newCount !== 1 ? 's' : ''} found${live ? ' via live web scan' : ' (demo data — proxy not connected)'}.`;
+      const msg = `${newCount} new document${newCount !== 1 ? 's' : ''} found via live web scan.`;
       showToast(msg);
       if (notify) pushNotify('✅ Scan complete — Reg Library', msg, () => window.focus());
     } catch (err) {
@@ -436,9 +434,7 @@ export function ReportingPage() {
           <button className="rp-hbtn" onClick={() => setShowHistory(h => !h)}>
             History {history.length > 0 && `(${history.length})`}
           </button>
-          <span className={`rp-mode-badge ${liveMode ? 'rp-mode-badge--live' : 'rp-mode-badge--demo'}`}>
-            {liveMode ? '● Live' : '○ Demo'}
-          </span>
+          <span className="rp-mode-badge rp-mode-badge--live">● Live</span>
         </div>
         </div>
       </header>
