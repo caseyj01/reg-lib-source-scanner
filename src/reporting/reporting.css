@@ -468,6 +468,55 @@ html, body {
 }
 .source-link:hover { background: #dbeafe; }
 
+/* ══════════════════════════════════════════════════════════════════════════════
+   HOVER BORDER GRADIENT BUTTON
+══════════════════════════════════════════════════════════════════════════════ */
+.hvbg-outer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 1px;
+  border: none;
+  cursor: pointer;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hvbg-outer:hover:not(.hvbg-disabled) { background: rgba(0,0,0,0.55); }
+.hvbg-outer.hvbg-disabled { opacity: 0.38; cursor: default; }
+
+.hvbg-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 9999px;
+  filter: blur(2px);
+  width: 100%;
+  height: 100%;
+}
+.hvbg-fill {
+  position: absolute;
+  inset: 2px;
+  z-index: 1;
+  background: #0f1628;
+  border-radius: 9999px;
+}
+.hvbg-content {
+  position: relative;
+  z-index: 2;
+  border-radius: 9999px;
+  padding: 4px 14px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
 /* Scrollbar styling for webkit */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }

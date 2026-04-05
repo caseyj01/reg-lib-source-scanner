@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { SOURCES }           from '../lib/sources.js';
 import { deepSearch }        from '../lib/deepSearch.js';
 import { useNotifications }  from './components/BackgroundTaskManager.jsx';
-import { FloatingPaths }     from './components/FloatingPaths.jsx';
+import { FloatingPaths }          from './components/FloatingPaths.jsx';
+import { HoverBorderGradient }    from './components/HoverBorderGradient.jsx';
 import seedUrls               from './data/seedData.json';
 import webFindings            from './data/webFindings.json';
 
@@ -299,16 +300,15 @@ export function ReportingPage() {
         <h1 className="rp-title">Banking Regulation Finder</h1>
         <p className="rp-subtitle">Live web scan for new documents not yet in the reg library.</p>
         <div className="rp-header-actions">
-          <button className="rp-hbtn" onClick={handleRun} disabled={isScanning}>
+          <HoverBorderGradient onClick={handleRun} disabled={isScanning}>
             {isScanning ? 'Scanning…' : 'Run Scan'}
-          </button>
-          <button
-            className="rp-hbtn"
+          </HoverBorderGradient>
+          <HoverBorderGradient
             onClick={() => downloadCSV(newFindings, `reg-new-${new Date().toISOString().slice(0,10)}.csv`)}
             disabled={newFindings.length === 0}
           >
             Export CSV
-          </button>
+          </HoverBorderGradient>
           <span className={`rp-mode-badge ${liveMode ? 'rp-mode-badge--live' : 'rp-mode-badge--demo'}`}>
             {liveMode ? '● Live' : '○ Demo'}
           </span>
@@ -322,20 +322,19 @@ export function ReportingPage() {
           {/* Action bar */}
           <div className="rp-action-bar">
             <div className="rp-action-row">
-              <button className="rp-btn rp-btn--blue" onClick={handleRun} disabled={isScanning}>
+              <HoverBorderGradient onClick={handleRun} disabled={isScanning}>
                 {isScanning ? 'Scanning…' : 'Run Doc Search'}
-              </button>
-              <button
-                className="rp-btn rp-btn--green"
+              </HoverBorderGradient>
+              <HoverBorderGradient
                 onClick={() => downloadCSV(newFindings, `reg-new-${new Date().toISOString().slice(0,10)}.csv`)}
                 disabled={newFindings.length === 0}
               >
                 Export New
-              </button>
+              </HoverBorderGradient>
               {scannedAt && (
-                <button className="rp-btn rp-btn--ghost" onClick={handleClearCache}>
+                <HoverBorderGradient onClick={handleClearCache}>
                   Clear Cache
-                </button>
+                </HoverBorderGradient>
               )}
               <label className="rp-notify-label">
                 <input type="checkbox" checked={notify} onChange={e => setNotify(e.target.checked)} />
