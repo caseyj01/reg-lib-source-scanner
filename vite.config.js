@@ -1,7 +1,7 @@
 import { defineConfig, build as viteBuild } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
-import { copyFileSync } from 'fs';
+import { copyFileSync, cpSync } from 'fs';
 
 /**
  * Plugin that builds the service worker and content script as self-contained
@@ -54,6 +54,13 @@ function extensionScriptsPlugin() {
       copyFileSync(
         resolve(__dirname, 'public/manifest.json'),
         resolve(__dirname, 'dist/manifest.json')
+      );
+
+      // ── Icons ─────────────────────────────────────────────────────────────
+      cpSync(
+        resolve(__dirname, 'public/icons'),
+        resolve(__dirname, 'dist/icons'),
+        { recursive: true }
       );
     },
   };
