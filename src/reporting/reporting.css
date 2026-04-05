@@ -113,7 +113,13 @@ html, body {
   letter-spacing: .04em;
   align-self: center;
 }
-.rp-mode-badge--live { background: #22c55e; color: #fff; border: 1px solid #16a34a; }
+.rp-mode-badge--live {
+  background: rgba(34,197,94,0.18);
+  color: #4ade80;
+  border: 1px solid rgba(34,197,94,0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
 .rp-mode-badge--demo { background: rgba(255,255,255,.1); color: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.2); }
 
 /* API key row */
