@@ -51,7 +51,9 @@ html, body {
    HEADER — compact sidebar strip
 ══════════════════════════════════════════════════════════════════════════════ */
 .rp-header {
-  background: linear-gradient(135deg, #0a5f5f 0%, #0c7a72 50%, #0e8a78 100%);
+  background: linear-gradient(90deg, #1FA2A6 0%, #1C8F95 50%, #1B6E78 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   padding: 12px 14px 10px;
   flex-shrink: 0;
 }
