@@ -261,9 +261,17 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   }
 });
 
+// ── Toolbar click → open side panel ──────────────────────────────────────────
+
+chrome.action.onClicked.addListener((tab) => {
+  chrome.sidePanel.open({ windowId: tab.windowId });
+});
+
 // ── Install / startup ─────────────────────────────────────────────────────────
 
 chrome.runtime.onInstalled.addListener(() => {
+  // Enable side panel for all tabs by default
+  chrome.sidePanel.setOptions({ enabled: true });
   runScrapeAll();
 });
 

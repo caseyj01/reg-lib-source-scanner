@@ -1,16 +1,18 @@
 {
   "manifest_version": 3,
-  "name": "Reg Library Source Finder",
+  "name": "Vixio Reg Library Finder",
   "version": "1.0.0",
-  "description": "Discover and track new regulatory sources for your compliance library",
-  "permissions": ["storage", "alarms", "activeTab", "scripting", "downloads"],
+  "description": "Scan the web for new regulatory documents not yet in your compliance library",
+  "permissions": ["storage", "alarms", "activeTab", "scripting", "downloads", "sidePanel"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "service-worker.js"
   },
   "action": {
-    "default_popup": "src/popup/index.html",
-    "default_title": "Reg Library Source Finder"
+    "default_title": "Open Reg Library Scanner"
+  },
+  "side_panel": {
+    "default_path": "src/reporting/index.html"
   },
   "content_scripts": [
     {
