@@ -3,58 +3,83 @@ import { SOURCES }           from '../lib/sources.js';
 import { deepSearch }        from '../lib/deepSearch.js';
 import { useNotifications }  from './components/BackgroundTaskManager.jsx';
 import seedUrls               from './data/seedData.json';
+import webFindings            from './data/webFindings.json';
 
 // URLs already in the reg library — dedup against these
 const SEED_URLS = new Set(seedUrls.map(u => u.replace('http://', 'https://')));
 
 // Regions to sweep per scan
 const SCAN_REGIONS = ['Global', 'UK/EU', 'AMER', 'APAC', 'ME/AF'];
+const BANKING_VERTICALS = ['Banking', 'Financial Services'];
 
-// ── Live web scan via proxy → Gemini ─────────────────────────────────────────
+// ── Map a Gemini result object → finding row ──────────────────────────────────
+function toFinding(doc, idx) {
+  const url     = doc.sourceUrl || doc.url || '';
+  const normUrl = url.replace('http://', 'https://');
+  return {
+    id:             `found-${idx + 1}`,
+    vertical:       'Financial Services',
+    jurisdiction:   doc.jurisdiction || doc.region || '',
+    authority:      doc.authority    || '',
+    documentType:   doc.type         || doc.documentType || '',
+    commonName:     doc.title        || doc.commonName   || url,
+    url,
+    alreadyCovered: SEED_URLS.has(normUrl),
+    summary:        doc.summary      || '',
+  };
+}
+
+// ── Local fallback: sample from webFindings.json ──────────────────────────────
+function localFallback(region) {
+  return webFindings
+    .filter(d =>
+      BANKING_VERTICALS.includes(d.vertical) &&
+      (d.region === region || d.region === 'Global' || region === 'Global')
+    )
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
+}
+
+// ── Live web scan via proxy → Gemini (falls back to local data if proxy down) ──
 async function runWebScan(onProgress, stopRef) {
   const found    = [];
   const seenUrls = new Set();
   const total    = SCAN_REGIONS.length;
+  let   liveMode = true;
+
+  function addDoc(doc) {
+    const url = doc.sourceUrl || doc.url || '';
+    if (!url) return;
+    const normUrl = url.replace('http://', 'https://');
+    if (seenUrls.has(normUrl)) return;
+    seenUrls.add(normUrl);
+    found.push(toFinding(doc, found.length));
+  }
 
   for (let i = 0; i < total; i++) {
     if (stopRef.current) break;
     const region = SCAN_REGIONS[i];
-    onProgress({ done: i, total, source: `Searching ${region}…`, found: found.length });
+    onProgress({ done: i, total, source: `Searching ${region}…`, found: found.length, liveMode });
 
     try {
       const results = await deepSearch({
-        query:       'binding banking and financial services regulations primary secondary legislation',
-        knownTitles: [],
+        query:    'binding banking and financial services regulations primary secondary legislation',
         region,
-        category:    'Banking',
+        category: 'Banking',
       });
-
-      for (const doc of results) {
-        if (!doc.sourceUrl) continue;
-        const normUrl = doc.sourceUrl.replace('http://', 'https://');
-        if (seenUrls.has(normUrl)) continue;
-        seenUrls.add(normUrl);
-        found.push({
-          id:             `found-${found.length + 1}`,
-          vertical:       'Financial Services',
-          jurisdiction:   doc.jurisdiction  || doc.region || '',
-          authority:      doc.authority     || '',
-          documentType:   doc.type          || '',
-          commonName:     doc.title         || doc.sourceUrl,
-          url:            doc.sourceUrl,
-          alreadyCovered: SEED_URLS.has(normUrl),
-          summary:        doc.summary       || '',
-        });
-      }
+      results.forEach(addDoc);
     } catch (err) {
-      console.warn(`Web scan for ${region} failed:`, err.message);
+      // Proxy unreachable — fall back to local sample for this region
+      liveMode = false;
+      console.warn(`Proxy unavailable for ${region}, using local data:`, err.message);
+      localFallback(region).forEach(addDoc);
     }
 
-    onProgress({ done: i + 1, total, source: `${region} complete`, found: found.length });
+    onProgress({ done: i + 1, total, source: `${region} done`, found: found.length, liveMode });
     if (stopRef.current) break;
   }
 
-  return found;
+  return { found, liveMode };
 }
 
 // ── CSV export ────────────────────────────────────────────────────────────────
@@ -172,6 +197,7 @@ export function ReportingPage() {
   const [findings, setFindings] = useState([]);
   const [notify,   setNotify]   = useState(true);
   const [toast,    setToast]    = useState(null);
+  const [liveMode, setLiveMode] = useState(true);
 
   const stopRef = useRef(false);
   const { notify: pushNotify } = useNotifications();
@@ -189,13 +215,14 @@ export function ReportingPage() {
       setFindings([]);
       setProgress({ done: 0, total: SCAN_REGIONS.length, source: '', found: 0 });
 
-      const results = await runWebScan(p => setProgress({ ...p }), stopRef);
+      const { found: results, liveMode: live } = await runWebScan(p => setProgress({ ...p }), stopRef);
 
       setFindings(results);
+      setLiveMode(live);
       setPhase('done');
 
       const newCount = results.filter(r => !r.alreadyCovered).length;
-      const msg = `${newCount} new document${newCount !== 1 ? 's' : ''} found across the web.`;
+      const msg = `${newCount} new document${newCount !== 1 ? 's' : ''} found${live ? ' via live web scan' : ' (demo data — proxy not connected)'}.`;
       showToast(msg);
       if (notify) pushNotify('✅ Scan complete — Reg Library', msg, () => window.focus());
     } catch (err) {
@@ -245,6 +272,9 @@ export function ReportingPage() {
           >
             Export CSV
           </button>
+          <span className={`rp-mode-badge ${liveMode ? 'rp-mode-badge--live' : 'rp-mode-badge--demo'}`}>
+            {liveMode ? '● Live' : '○ Demo'}
+          </span>
         </div>
       </header>
 

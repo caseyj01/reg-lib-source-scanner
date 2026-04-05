@@ -96,6 +96,16 @@ html, body {
 .rp-hbtn:hover:not(:disabled) { background: rgba(255,255,255,.15); border-color: #fff; }
 .rp-hbtn:disabled { opacity: .4; cursor: default; }
 .rp-hbtn--warn { border-color: #fde68a; color: #fde68a; }
+.rp-mode-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: .04em;
+  align-self: center;
+}
+.rp-mode-badge--live { background: rgba(40,167,69,.25); color: #86efac; border: 1px solid rgba(40,167,69,.4); }
+.rp-mode-badge--demo { background: rgba(255,255,255,.1); color: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.2); }
 
 /* API key row */
 .rp-api-key-wrap {
