@@ -347,6 +347,21 @@ html, body {
 .row-covered .td-name { font-weight: 400; }
 .row-covered .open-btn { opacity: .65; }
 
+/* Legislation type badges */
+.leg-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.leg-badge--primary   { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.leg-badge--secondary { background: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+.leg-badge--other     { background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; }
+
 .table-empty {
   padding: 20px 12px;
   font-size: 12px;

@@ -81,6 +81,7 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
             <th>Jxd</th>
             <th>Authority</th>
             <th>Name</th>
+            <th>Leg. Type</th>
             <th>Open</th>
             {showCoveredBadge && <th>Status</th>}
           </tr>
@@ -94,6 +95,7 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
               <td>{row.jurisdiction}</td>
               <td>{row.authority}</td>
               <td className="td-name" title={row.commonName}>{row.commonName}</td>
+              <td><span className={`leg-badge leg-badge--${row.documentType?.toLowerCase().includes('primary') ? 'primary' : row.documentType?.toLowerCase().includes('secondary') ? 'secondary' : 'other'}`}>{row.documentType || '—'}</span></td>
               <td className="td-url">
                 <a href={row.url} target="_blank" rel="noreferrer noopener" className="open-btn" title={row.url}>
                   <svg width="10" height="10" viewBox="0 0 11 11" fill="none">
