@@ -469,6 +469,48 @@ html, body {
 .source-link:hover { background: #dbeafe; }
 
 /* ══════════════════════════════════════════════════════════════════════════════
+   COLORFUL BUTTON
+══════════════════════════════════════════════════════════════════════════════ */
+.bcf-btn {
+  position: relative;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 7px;
+  border: none;
+  background: #18181b;
+  cursor: pointer;
+  overflow: hidden;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.bcf-btn.bcf-disabled { opacity: 0.4; cursor: default; pointer-events: none; }
+.bcf-btn:hover:not(.bcf-disabled) { transform: translateY(-1px); }
+.bcf-btn:active:not(.bcf-disabled) { transform: translateY(0); }
+
+.bcf-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
+  opacity: 0.4;
+  filter: blur(6px);
+  transition: opacity 0.5s;
+}
+.bcf-btn:hover:not(.bcf-disabled) .bcf-glow { opacity: 0.85; }
+
+.bcf-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
    GLASS BUTTON
 ══════════════════════════════════════════════════════════════════════════════ */
 .gb-wrap {
