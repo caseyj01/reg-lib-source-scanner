@@ -428,7 +428,7 @@ export function ReportingPage() {
             <div className="rp-panel-head">
               <div className="rp-panel-title">Your Reg Library</div>
               <div className="rp-panel-sub">
-                {seedUrls.length.toLocaleString()} documents — findings are deduplicated against this list.
+                2,070 documents — findings are deduplicated against this list.
               </div>
             </div>
           </div>
