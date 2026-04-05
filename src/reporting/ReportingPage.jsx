@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { SOURCES }           from '../lib/sources.js';
 import { deepSearch }        from '../lib/deepSearch.js';
 import { useNotifications }  from './components/BackgroundTaskManager.jsx';
@@ -19,6 +19,45 @@ const SCAN_TARGETS = SOURCES.reduce((acc, s) => {
   }
   return acc;
 }, []);
+
+const CACHE_KEY = 'reglib_scan_cache';
+
+// ── Cache helpers ─────────────────────────────────────────────────────────────
+function loadCache() {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveCache(findings, liveMode) {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({
+      findings,
+      liveMode,
+      scannedAt: new Date().toISOString(),
+    }));
+  } catch {
+    // storage full — silently skip
+  }
+}
+
+function clearCache() {
+  localStorage.removeItem(CACHE_KEY);
+}
+
+function formatAge(iso) {
+  const diff = Date.now() - new Date(iso).getTime();
+  const mins  = Math.floor(diff / 60000);
+  const hours = Math.floor(mins / 60);
+  const days  = Math.floor(hours / 24);
+  if (days  > 0) return `${days}d ago`;
+  if (hours > 0) return `${hours}h ago`;
+  if (mins  > 0) return `${mins}m ago`;
+  return 'just now';
+}
 
 // ── Map a Gemini result object → finding row ──────────────────────────────────
 function toFinding(doc, idx) {
@@ -165,15 +204,25 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
 // ═════════════════════════════════════════════════════════════════════════════
 export function ReportingPage() {
 
-  const [phase,    setPhase]    = useState('idle');
-  const [progress, setProgress] = useState({ done: 0, total: SCAN_TARGETS.length, source: '', found: 0 });
-  const [findings, setFindings] = useState([]);
-  const [notify,   setNotify]   = useState(true);
-  const [toast,    setToast]    = useState(null);
-  const [liveMode, setLiveMode] = useState(true);
+  const cached = loadCache();
+
+  const [phase,     setPhase]     = useState(cached ? 'done' : 'idle');
+  const [progress,  setProgress]  = useState({ done: 0, total: SCAN_TARGETS.length, source: '', found: 0 });
+  const [findings,  setFindings]  = useState(cached?.findings ?? []);
+  const [notify,    setNotify]    = useState(true);
+  const [toast,     setToast]     = useState(null);
+  const [liveMode,  setLiveMode]  = useState(cached?.liveMode ?? true);
+  const [scannedAt, setScannedAt] = useState(cached?.scannedAt ?? null);
 
   const stopRef = useRef(false);
   const { notify: pushNotify } = useNotifications();
+
+  // Keep scannedAt display fresh (re-render every minute)
+  useEffect(() => {
+    if (!scannedAt) return;
+    const id = setInterval(() => setScannedAt(s => s), 60000);
+    return () => clearInterval(id);
+  }, [scannedAt]);
 
   function showToast(msg, type = 'success') {
     setToast({ msg, type });
@@ -193,6 +242,9 @@ export function ReportingPage() {
       setFindings(results);
       setLiveMode(live);
       setPhase('done');
+      const now = new Date().toISOString();
+      setScannedAt(now);
+      saveCache(results, live);
 
       const newCount = results.filter(r => !r.alreadyCovered).length;
       const msg = `${newCount} new document${newCount !== 1 ? 's' : ''} found${live ? ' via live web scan' : ' (demo data — proxy not connected)'}.`;
@@ -206,6 +258,14 @@ export function ReportingPage() {
   }
 
   function handleStop() { stopRef.current = true; }
+
+  function handleClearCache() {
+    clearCache();
+    setFindings([]);
+    setPhase('idle');
+    setScannedAt(null);
+    showToast('Scan cache cleared.', 'success');
+  }
 
   const isScanning  = phase === 'scanning';
   const isDone      = phase === 'done';
@@ -267,6 +327,11 @@ export function ReportingPage() {
               >
                 Export New
               </button>
+              {scannedAt && (
+                <button className="rp-btn rp-btn--ghost" onClick={handleClearCache}>
+                  Clear Cache
+                </button>
+              )}
               <label className="rp-notify-label">
                 <input type="checkbox" checked={notify} onChange={e => setNotify(e.target.checked)} />
                 Notify
@@ -275,6 +340,9 @@ export function ReportingPage() {
             <div className={`rp-status ${isScanning ? 'rp-status--active' : ''}`}>
               {isScanning && <span className="rp-status-dot" />}
               <span>{statusText}</span>
+              {scannedAt && !isScanning && (
+                <span className="rp-cache-age"> · cached {formatAge(scannedAt)}</span>
+              )}
             </div>
           </div>
 

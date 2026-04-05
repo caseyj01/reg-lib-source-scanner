@@ -219,6 +219,8 @@ html, body {
 .rp-btn--blue:hover:not(:disabled)  { filter: brightness(1.1); }
 .rp-btn--green { background: #28a745; color: #fff; }
 .rp-btn--green:hover:not(:disabled) { filter: brightness(1.08); }
+.rp-btn--ghost { background: transparent; color: #64748b; border: 1px solid #d1d5db; }
+.rp-btn--ghost:hover:not(:disabled) { background: #f1f5f9; border-color: #9ca3af; }
 
 .rp-notify-label {
   display: flex;
@@ -240,6 +242,7 @@ html, body {
   gap: 5px;
 }
 .rp-status--active { color: #0d6e6e; font-weight: 500; }
+.rp-cache-age { color: #94a3b8; font-size: 10px; }
 .rp-status-dot {
   width: 7px; height: 7px;
   background: #28a745;
