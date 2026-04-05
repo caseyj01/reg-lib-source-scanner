@@ -8,9 +8,17 @@ import webFindings            from './data/webFindings.json';
 // URLs already in the reg library — dedup against these
 const SEED_URLS = new Set(seedUrls.map(u => u.replace('http://', 'https://')));
 
-// Regions to sweep per scan
-const SCAN_REGIONS = ['Global', 'UK/EU', 'AMER', 'APAC', 'ME/AF'];
 const BANKING_VERTICALS = ['Banking', 'Financial Services'];
+
+// Deduplicate SOURCES by regulator for scan grouping
+// (multiple source entries per regulator → one targeted search each)
+const SCAN_TARGETS = SOURCES.reduce((acc, s) => {
+  const key = `${s.regulator}||${s.region}`;
+  if (!acc.find(t => t.key === key)) {
+    acc.push({ key, regulator: s.regulator, region: s.region, category: s.category });
+  }
+  return acc;
+}, []);
 
 // ── Map a Gemini result object → finding row ──────────────────────────────────
 function toFinding(doc, idx) {
@@ -44,7 +52,7 @@ function localFallback(region) {
 async function runWebScan(onProgress, stopRef) {
   const found    = [];
   const seenUrls = new Set();
-  const total    = SCAN_REGIONS.length;
+  const total    = SCAN_TARGETS.length;
   let   liveMode = true;
 
   function addDoc(doc) {
@@ -58,24 +66,23 @@ async function runWebScan(onProgress, stopRef) {
 
   for (let i = 0; i < total; i++) {
     if (stopRef.current) break;
-    const region = SCAN_REGIONS[i];
-    onProgress({ done: i, total, source: `Searching ${region}…`, found: found.length, liveMode });
+    const target = SCAN_TARGETS[i];
+    onProgress({ done: i, total, source: `${target.regulator}`, found: found.length, liveMode });
 
     try {
       const results = await deepSearch({
-        query:    'binding banking and financial services regulations primary secondary legislation',
-        region,
-        category: 'Banking',
+        query:    `binding banking and financial services regulations from ${target.regulator}`,
+        region:   target.region,
+        category: target.category,
       });
       results.forEach(addDoc);
     } catch (err) {
-      // Proxy unreachable — fall back to local sample for this region
       liveMode = false;
-      console.warn(`Proxy unavailable for ${region}, using local data:`, err.message);
-      localFallback(region).forEach(addDoc);
+      console.warn(`Proxy unavailable for ${target.regulator}, using local data:`, err.message);
+      localFallback(target.region).forEach(addDoc);
     }
 
-    onProgress({ done: i + 1, total, source: `${region} done`, found: found.length, liveMode });
+    onProgress({ done: i + 1, total, source: `${target.regulator}`, found: found.length, liveMode });
     if (stopRef.current) break;
   }
 
@@ -193,7 +200,7 @@ function CurrentDocsTab() {
 export function ReportingPage() {
   const [tab,      setTab]      = useState('docs');
   const [phase,    setPhase]    = useState('idle');
-  const [progress, setProgress] = useState({ done: 0, total: SCAN_REGIONS.length, source: '', found: 0 });
+  const [progress, setProgress] = useState({ done: 0, total: SCAN_TARGETS.length, source: '', found: 0 });
   const [findings, setFindings] = useState([]);
   const [notify,   setNotify]   = useState(true);
   const [toast,    setToast]    = useState(null);
@@ -213,7 +220,7 @@ export function ReportingPage() {
       stopRef.current = false;
       setPhase('scanning');
       setFindings([]);
-      setProgress({ done: 0, total: SCAN_REGIONS.length, source: '', found: 0 });
+      setProgress({ done: 0, total: SCAN_TARGETS.length, source: '', found: 0 });
 
       const { found: results, liveMode: live } = await runWebScan(p => setProgress({ ...p }), stopRef);
 
@@ -336,7 +343,7 @@ export function ReportingPage() {
               <div className="rp-progress-label">
                 <span><strong title={progress.source}>{progress.source}</strong></span>
                 <span className="rp-progress-right">
-                  {progress.done}/{progress.total} regions · {progress.found} found
+                  {progress.done}/{progress.total} regulators · {progress.found} found
                   <button className="rp-stop" onClick={handleStop}>Stop</button>
                 </span>
               </div>
@@ -359,7 +366,7 @@ export function ReportingPage() {
               <div className="rp-panel-title">Documents Found Online</div>
               <div className="rp-panel-sub">
                 {isScanning
-                  ? `Live web scan in progress across ${SCAN_REGIONS.length} regions…`
+                  ? `Scanning ${SCAN_TARGETS.length} regulators…`
                   : isDone
                     ? `${newFindings.length} new · ${findings.filter(r => r.alreadyCovered).length} already in library`
                     : 'Run a scan to search the web for new regulatory documents.'}
