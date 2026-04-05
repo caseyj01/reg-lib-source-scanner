@@ -393,10 +393,7 @@ export function ReportingPage() {
           {/* Action bar */}
           <div className="rp-action-bar">
             <div className="rp-action-row">
-              <button className="rp-btn rp-btn--blue" onClick={handleRun} disabled={isScanning}>
-                {isScanning ? 'Scanning…' : 'Run Doc Search'}
-              </button>
-              <label className="rp-notify-label">
+<label className="rp-notify-label">
                 <input type="checkbox" checked={notify} onChange={e => setNotify(e.target.checked)} />
                 Notify
               </label>
