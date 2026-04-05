@@ -24,9 +24,11 @@ function simulateScan(onProgress, stopRef) {
       await new Promise(r => setTimeout(r, 100 + Math.random() * 300));
       if (stopRef.current) break;
 
-      // Find web documents that match this source's region
+      // Find web documents that match this source's region — Banking/Financial Services only
+      const BANKING_VERTICALS = ['Banking', 'Financial Services'];
       const candidates = webFindings.filter(doc =>
-        doc.region === source.region || doc.region === 'Global' || source.region === 'Global'
+        BANKING_VERTICALS.includes(doc.vertical) &&
+        (doc.region === source.region || doc.region === 'Global' || source.region === 'Global')
       );
 
       // Sample 0–2 candidates per source (realistic hit rate)
