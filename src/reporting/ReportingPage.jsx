@@ -19,7 +19,8 @@ const SCAN_TARGETS = SOURCES.map(s => ({
   category:  s.category,
 }));
 
-const CACHE_KEY = 'reglib_scan_cache';
+const CACHE_KEY   = 'reglib_scan_cache';
+const HISTORY_KEY = 'reglib_scan_history';
 
 // ── Cache helpers ─────────────────────────────────────────────────────────────
 function loadCache() {
@@ -45,6 +46,34 @@ function saveCache(findings, liveMode) {
 
 function clearCache() {
   localStorage.removeItem(CACHE_KEY);
+}
+
+// ── History helpers ───────────────────────────────────────────────────────────
+function loadHistory() {
+  try {
+    const raw = localStorage.getItem(HISTORY_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function appendHistory(findings, liveMode, scannedAt) {
+  try {
+    const history = loadHistory();
+    history.unshift({
+      id:          scannedAt,
+      scannedAt,
+      liveMode,
+      total:       findings.length,
+      newCount:    findings.filter(r => !r.alreadyCovered).length,
+      findings,
+    });
+    // keep last 10 runs
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, 10)));
+  } catch {
+    // storage full — silently skip
+  }
 }
 
 function formatAge(iso) {
@@ -200,6 +229,49 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
   );
 }
 
+// ── History entry (collapsible) ───────────────────────────────────────────────
+function HistoryEntry({ entry, defaultOpen = false }) {
+  const [open, setOpen] = useState(defaultOpen);
+  const newFindings = entry.findings.filter(r => !r.alreadyCovered);
+  return (
+    <div className="rp-history-entry">
+      <button className="rp-history-row" onClick={() => setOpen(o => !o)}>
+        <span className="rp-history-date">
+          {new Date(entry.scannedAt).toLocaleString()}
+        </span>
+        <span className="rp-history-meta">
+          {entry.newCount} new · {entry.total - entry.newCount} covered
+          <span className={`rp-mode-badge rp-mode-badge--sm ${entry.liveMode ? 'rp-mode-badge--live' : 'rp-mode-badge--demo'}`}>
+            {entry.liveMode ? '● Live' : '○ Demo'}
+          </span>
+        </span>
+        <span className="rp-history-chevron">{open ? '▲' : '▼'}</span>
+      </button>
+      {open && (
+        <div className="rp-history-body">
+          <div className="rp-history-actions">
+            <button
+              className="rp-btn rp-btn--green"
+              onClick={() => downloadCSV(newFindings, `reg-new-${entry.scannedAt.slice(0,10)}.csv`)}
+              disabled={newFindings.length === 0}
+            >
+              Export New
+            </button>
+            <button
+              className="rp-btn rp-btn--ghost"
+              onClick={() => downloadCSV(entry.findings, `reg-all-${entry.scannedAt.slice(0,10)}.csv`)}
+              disabled={entry.findings.length === 0}
+            >
+              Export All
+            </button>
+          </div>
+          <DocTable rows={entry.findings} emptyMsg="No findings." showCoveredBadge />
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ═════════════════════════════════════════════════════════════════════════════
 export function ReportingPage() {
 
@@ -208,10 +280,12 @@ export function ReportingPage() {
   const [phase,     setPhase]     = useState(cached ? 'done' : 'idle');
   const [progress,  setProgress]  = useState({ done: 0, total: SCAN_TARGETS.length, source: '', found: 0 });
   const [findings,  setFindings]  = useState(cached?.findings ?? []);
-  const [notify,    setNotify]    = useState(true);
-  const [toast,     setToast]     = useState(null);
-  const [liveMode,  setLiveMode]  = useState(cached?.liveMode ?? true);
-  const [scannedAt, setScannedAt] = useState(cached?.scannedAt ?? null);
+  const [notify,      setNotify]      = useState(true);
+  const [toast,       setToast]       = useState(null);
+  const [liveMode,    setLiveMode]    = useState(cached?.liveMode ?? true);
+  const [scannedAt,   setScannedAt]   = useState(cached?.scannedAt ?? null);
+  const [showHistory, setShowHistory] = useState(false);
+  const [history,     setHistory]     = useState(() => loadHistory());
 
   const stopRef = useRef(false);
   const { notify: pushNotify } = useNotifications();
@@ -244,6 +318,8 @@ export function ReportingPage() {
       const now = new Date().toISOString();
       setScannedAt(now);
       saveCache(results, live);
+      appendHistory(results, live, now);
+      setHistory(loadHistory());
 
       const newCount = results.filter(r => !r.alreadyCovered).length;
       const msg = `${newCount} new document${newCount !== 1 ? 's' : ''} found${live ? ' via live web scan' : ' (demo data — proxy not connected)'}.`;
@@ -298,17 +374,10 @@ export function ReportingPage() {
         <p className="rp-subtitle">Live web scan for new documents not yet in the reg library.</p>
         <div className="rp-header-actions">
           <button className="rp-hbtn" onClick={handleRun} disabled={isScanning}>
-            {isScanning ? 'Scanning…' : 'Run Now'}
+            {isScanning ? 'Scanning…' : 'Run Doc Search'}
           </button>
-          <button className="rp-hbtn" onClick={() => {}} disabled>
-            Findings Table
-          </button>
-          <button
-            className="rp-hbtn"
-            onClick={() => downloadCSV(newFindings, `reg-new-${new Date().toISOString().slice(0,10)}.csv`)}
-            disabled={newFindings.length === 0}
-          >
-            Export CSV
+          <button className="rp-hbtn" onClick={() => setShowHistory(h => !h)}>
+            History {history.length > 0 && `(${history.length})`}
           </button>
           <span className={`rp-mode-badge ${liveMode ? 'rp-mode-badge--live' : 'rp-mode-badge--demo'}`}>
             {liveMode ? '● Live' : '○ Demo'}
@@ -325,13 +394,6 @@ export function ReportingPage() {
             <div className="rp-action-row">
               <button className="rp-btn rp-btn--blue" onClick={handleRun} disabled={isScanning}>
                 {isScanning ? 'Scanning…' : 'Run Doc Search'}
-              </button>
-              <button
-                className="rp-btn rp-btn--green"
-                onClick={() => downloadCSV(newFindings, `reg-new-${new Date().toISOString().slice(0,10)}.csv`)}
-                disabled={newFindings.length === 0}
-              >
-                Export New
               </button>
               {scannedAt && (
                 <button className="rp-btn rp-btn--ghost" onClick={handleClearCache}>
@@ -398,6 +460,29 @@ export function ReportingPage() {
           </div>
 
       </div>
+
+      {/* ── History drawer ───────────────────────────────────────────────────── */}
+      {showHistory && (
+        <div className="rp-history-overlay" onClick={() => setShowHistory(false)}>
+          <div className="rp-history-drawer" onClick={e => e.stopPropagation()}>
+            <div className="rp-history-head">
+              <span className="rp-history-title">Scan History</span>
+              <button className="rp-history-close" onClick={() => setShowHistory(false)}>✕</button>
+            </div>
+            {history.length === 0 ? (
+              <div className="rp-history-empty">No past scans yet.</div>
+            ) : (
+              history.map((entry, i) => (
+                <HistoryEntry
+                  key={entry.id}
+                  entry={entry}
+                  defaultOpen={i === 0}
+                />
+              ))
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

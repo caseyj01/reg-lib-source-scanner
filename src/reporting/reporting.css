@@ -610,6 +610,123 @@ html, body {
   transition: opacity 0.18s;
 }
 
+/* ── History drawer ─────────────────────────────────────────────────────────── */
+.rp-history-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rp-history-drawer {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: rp-slide-in .2s ease;
+}
+
+@keyframes rp-slide-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.rp-history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  flex-shrink: 0;
+}
+
+.rp-history-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.rp-history-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: #64748b;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.rp-history-close:hover { background: #f1f5f9; color: #1e293b; }
+
+.rp-history-empty {
+  padding: 24px 16px;
+  color: #94a3b8;
+  font-size: 12px;
+  text-align: center;
+}
+
+.rp-history-entry {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.rp-history-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background .12s;
+}
+.rp-history-row:hover { background: #f8fafc; }
+
+.rp-history-date {
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+  flex-shrink: 0;
+}
+
+.rp-history-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748b;
+  margin-left: auto;
+}
+
+.rp-history-chevron {
+  font-size: 9px;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.rp-mode-badge--sm {
+  font-size: 9px;
+  padding: 1px 6px;
+}
+
+.rp-history-body {
+  padding: 8px 10px 12px;
+  background: #fafbfc;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+
+.rp-history-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
 /* Scrollbar styling for webkit */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
