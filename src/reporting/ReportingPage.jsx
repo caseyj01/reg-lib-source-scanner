@@ -14,14 +14,14 @@ const SCAN_REGIONS = ['Global', 'UK/EU', 'AMER', 'APAC', 'ME/AF'];
 async function loadApiKey() {
   if (typeof chrome !== 'undefined' && chrome.storage?.local) {
     return new Promise(resolve =>
-      chrome.storage.local.get('anthropicApiKey', d => resolve(d.anthropicApiKey || ''))
+      chrome.storage.local.get('geminiApiKey', d => resolve(d.geminiApiKey || ''))
     );
   }
   return localStorage.getItem('reg-api-key') || '';
 }
 function saveApiKey(key) {
   if (typeof chrome !== 'undefined' && chrome.storage?.local) {
-    chrome.storage.local.set({ anthropicApiKey: key });
+    chrome.storage.local.set({ geminiApiKey: key });
   }
   localStorage.setItem('reg-api-key', key);
 }
@@ -293,7 +293,7 @@ export function ReportingPage() {
             <input
               className="rp-api-key-input"
               type="password"
-              placeholder="sk-ant-…"
+              placeholder="AIza…"
               value={apiKey}
               onChange={e => setApiKey(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleSaveKey()}

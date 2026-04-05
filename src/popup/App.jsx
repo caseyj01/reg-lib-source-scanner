@@ -46,13 +46,13 @@ export default function App() {
   // ── On mount: restore persisted state ──────────────────────────────────────
   useEffect(() => {
     chrome.storage.local.get(
-      ['lastSyncTime', 'totalIndexed', 'libraryItems', 'libraryFile', 'anthropicApiKey'],
+      ['lastSyncTime', 'totalIndexed', 'libraryItems', 'libraryFile', 'geminiApiKey'],
       (data) => {
-        if (data.lastSyncTime)    setLastSync(data.lastSyncTime);
-        if (data.totalIndexed)    setTotalIndexed(data.totalIndexed);
-        if (data.libraryItems)    setLibraryItems(data.libraryItems);
-        if (data.libraryFile)     setLibraryFile(data.libraryFile);
-        if (data.anthropicApiKey) setApiKeyInput(data.anthropicApiKey);
+        if (data.lastSyncTime) setLastSync(data.lastSyncTime);
+        if (data.totalIndexed) setTotalIndexed(data.totalIndexed);
+        if (data.libraryItems) setLibraryItems(data.libraryItems);
+        if (data.libraryFile)  setLibraryFile(data.libraryFile);
+        if (data.geminiApiKey) setApiKeyInput(data.geminiApiKey);
       }
     );
   }, []);
@@ -78,7 +78,7 @@ export default function App() {
 
   // ── API key save ───────────────────────────────────────────────────────────
   const handleSaveApiKey = () => {
-    chrome.storage.local.set({ anthropicApiKey: apiKeyInput }, () => {
+    chrome.storage.local.set({ geminiApiKey: apiKeyInput }, () => {
       setApiKeySaved(true);
       setTimeout(() => setApiKeySaved(false), 2000);
     });
@@ -180,11 +180,11 @@ export default function App() {
             <button className="settings-close" onClick={() => setShowSettings(false)}>✕</button>
           </div>
           <div className="settings-body">
-            <label className="settings-label">Anthropic API Key</label>
+            <label className="settings-label">Gemini API Key</label>
             <input
               type="password"
               className="settings-input"
-              placeholder="sk-ant-…"
+              placeholder="AIza…"
               value={apiKeyInput}
               onChange={e => setApiKeyInput(e.target.value)}
             />
@@ -192,7 +192,7 @@ export default function App() {
               {apiKeySaved ? '✓ Saved!' : 'Save Key'}
             </button>
             <p className="settings-hint">
-              Required for deep search. Get your key at console.anthropic.com.
+              Required for deep search. Get your key at aistudio.google.com.
             </p>
           </div>
         </div>
