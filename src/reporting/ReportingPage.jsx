@@ -361,9 +361,9 @@ export function ReportingPage() {
               <div className="rp-panel-title">Similar Documents Found Online</div>
               <div className="rp-panel-sub">
                 {isScanning
-                  ? `Searching from ${seedData.length} seed documents…`
+                  ? `Searching across ${seedUrls.length.toLocaleString()} library URLs…`
                   : isDone
-                    ? `${findings.length} similar document${findings.length !== 1 ? 's' : ''} found from ${seedData.length} seed documents.`
+                    ? `${findings.filter(r => !r.alreadyCovered).length} new document${findings.filter(r=>!r.alreadyCovered).length !== 1 ? 's' : ''} found (${findings.filter(r=>r.alreadyCovered).length} already in library).`
                     : 'Run a search to find similar online documents.'}
               </div>
             </div>
