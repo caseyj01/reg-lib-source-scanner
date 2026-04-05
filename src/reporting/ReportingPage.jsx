@@ -396,11 +396,6 @@ export function ReportingPage() {
               <button className="rp-btn rp-btn--blue" onClick={handleRun} disabled={isScanning}>
                 {isScanning ? 'Scanning…' : 'Run Doc Search'}
               </button>
-              {scannedAt && (
-                <button className="rp-btn rp-btn--ghost" onClick={handleClearCache}>
-                  Clear Cache
-                </button>
-              )}
               <label className="rp-notify-label">
                 <input type="checkbox" checked={notify} onChange={e => setNotify(e.target.checked)} />
                 Notify
