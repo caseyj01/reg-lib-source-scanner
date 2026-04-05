@@ -1,0 +1,707 @@
+[
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "FATF",
+    "documentType": "Recommendation",
+    "commonName": "FATF 40 Recommendations (2023 Update)",
+    "url": "https://www.fatf-gafi.org/content/dam/fatf-gafi/recommendations/FATF%20Recommendations%202012.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "FATF",
+    "documentType": "Guidance",
+    "commonName": "FATF Guidance on Virtual Assets and VASPs",
+    "url": "https://www.fatf-gafi.org/content/dam/fatf-gafi/guidance/Updated-Guidance-VA-VASP.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "FATF",
+    "documentType": "Guidance",
+    "commonName": "FATF Guidance on Beneficial Ownership and Transparency",
+    "url": "https://www.fatf-gafi.org/content/dam/fatf-gafi/guidance/R24-Guidance-Transparency-Beneficial-Ownership.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "FATF",
+    "documentType": "Guidance",
+    "commonName": "FATF Risk-Based Approach for the Banking Sector",
+    "url": "https://www.fatf-gafi.org/content/dam/fatf-gafi/guidance/RBA-Banking-Sector.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "BCBS / BIS",
+    "documentType": "Prudential Standard",
+    "commonName": "Basel III: Finalising Post-Crisis Reforms (Basel 3.1) — Full Text",
+    "url": "https://www.bis.org/bcbs/publ/d424.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "BCBS / BIS",
+    "documentType": "Prudential Standard",
+    "commonName": "Basel III: Liquidity Coverage Ratio (LCR)",
+    "url": "https://www.bis.org/publ/bcbs238.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "BCBS / BIS",
+    "documentType": "Prudential Standard",
+    "commonName": "Basel III: Net Stable Funding Ratio (NSFR)",
+    "url": "https://www.bis.org/bcbs/publ/d295.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "BCBS / BIS",
+    "documentType": "Prudential Standard",
+    "commonName": "Minimum Capital Requirements for Market Risk (FRTB — d457)",
+    "url": "https://www.bis.org/bcbs/publ/d457.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "BCBS / BIS",
+    "documentType": "Standard",
+    "commonName": "Principles for Operational Resilience",
+    "url": "https://www.bis.org/bcbs/publ/d516.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "BCBS / BIS",
+    "documentType": "Standard",
+    "commonName": "Principles for the Sound Management of Operational Risk",
+    "url": "https://www.bis.org/publ/bcbs195.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "IOSCO",
+    "documentType": "Principle",
+    "commonName": "IOSCO Principles for Financial Market Infrastructures (PFMIs)",
+    "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD377.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "IOSCO",
+    "documentType": "Report",
+    "commonName": "IOSCO Objectives and Principles of Securities Regulation",
+    "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "IOSCO",
+    "documentType": "Guidance",
+    "commonName": "IOSCO Principles for the Regulation of ETFs",
+    "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD414.pdf"
+  },
+  {
+    "vertical": "Insurance", "jurisdiction": "Global", "region": "Global",
+    "authority": "IAIS",
+    "documentType": "Standard",
+    "commonName": "Insurance Core Principles (ICPs) — Full Text",
+    "url": "https://www.iaisweb.org/uploads/2022/01/ICPs-Standards-Guidance-and-Assessment-Methodology-updated-November-2019.pdf"
+  },
+  {
+    "vertical": "Insurance", "jurisdiction": "Global", "region": "Global",
+    "authority": "IAIS",
+    "documentType": "Standard",
+    "commonName": "IAIS Insurance Capital Standard (ICS) Version 2.0",
+    "url": "https://www.iaisweb.org/uploads/2023/11/ICS-Version-2.0-for-Extended-Field-Testing.pdf"
+  },
+  {
+    "vertical": "Insurance", "jurisdiction": "Global", "region": "Global",
+    "authority": "IAIS",
+    "documentType": "Guidance",
+    "commonName": "IAIS Application Paper on the Supervision of Financial Conglomerates",
+    "url": "https://www.iaisweb.org/uploads/2022/01/Application-Paper-on-Supervision-of-Financial-Conglomerates.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "FSB",
+    "documentType": "Policy Document",
+    "commonName": "FSB High-Level Recommendations for Crypto-Asset Regulation",
+    "url": "https://www.fsb.org/wp-content/uploads/P170723-3.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "FSB",
+    "documentType": "Standard",
+    "commonName": "FSB Key Attributes of Effective Resolution Regimes",
+    "url": "https://www.fsb.org/wp-content/uploads/r_141015.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "FSB",
+    "documentType": "Guidance",
+    "commonName": "FSB Principles on Loss-Absorbing and Recapitalisation Capacity (TLAC)",
+    "url": "https://www.fsb.org/wp-content/uploads/TLAC-Principles-and-Term-Sheet-for-publication-final.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "OECD",
+    "documentType": "Convention",
+    "commonName": "OECD Anti-Bribery Convention",
+    "url": "https://www.oecd.org/corruption/oecdantibriberyconvention.htm"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "OECD",
+    "documentType": "Framework",
+    "commonName": "OECD BEPS Action Plan — All 15 Actions",
+    "url": "https://www.oecd.org/tax/beps/beps-actions/"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "OECD",
+    "documentType": "Principle",
+    "commonName": "OECD Principles of Corporate Governance (2023)",
+    "url": "https://www.oecd-ilibrary.org/governance/g20-oecd-principles-of-corporate-governance-2023_ed750a3d-en"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "IMF",
+    "documentType": "Report",
+    "commonName": "IMF Global Financial Stability Report (GFSR) — Latest Edition",
+    "url": "https://www.imf.org/en/Publications/GFSR"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "World Bank",
+    "documentType": "Guidance",
+    "commonName": "World Bank Financial Sector Assessment Program (FSAP) Handbook",
+    "url": "https://www.worldbank.org/en/topic/financialsector/publication/fsap-handbook"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "IFRS Foundation",
+    "documentType": "Accounting Standard",
+    "commonName": "IFRS 9 Financial Instruments",
+    "url": "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "IFRS Foundation",
+    "documentType": "Accounting Standard",
+    "commonName": "IFRS 17 Insurance Contracts",
+    "url": "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-17-insurance-contracts/"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "Global", "region": "Global",
+    "authority": "IFRS Foundation",
+    "documentType": "Disclosure Standard",
+    "commonName": "IFRS S1 & S2 Sustainability Disclosure Standards",
+    "url": "https://www.ifrs.org/issued-standards/ifrs-sustainability-standards-navigator/"
+  },
+
+  {
+    "vertical": "Financial Services", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "FCA",
+    "documentType": "Policy Statement",
+    "commonName": "Consumer Duty Final Rules (PS22/9)",
+    "url": "https://www.fca.org.uk/publication/policy/ps22-9.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "FCA",
+    "documentType": "Policy Statement",
+    "commonName": "Strengthening Accountability in Banking — SM&CR (PS15/14)",
+    "url": "https://www.fca.org.uk/publication/policy/ps15-14.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "FCA",
+    "documentType": "Policy Statement",
+    "commonName": "FCA Operational Resilience (PS21/3)",
+    "url": "https://www.fca.org.uk/publication/policy/ps21-3.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "FCA",
+    "documentType": "Policy Statement",
+    "commonName": "FCA ESG Strategy & Sustainable Finance Roadmap",
+    "url": "https://www.fca.org.uk/publications/corporate-documents/fca-esg-strategy"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "PRA",
+    "documentType": "Supervisory Statement",
+    "commonName": "PRA Model Risk Management Principles (SS1/23)",
+    "url": "https://www.bankofengland.co.uk/prudential-regulation/publication/2023/may/model-risk-management-principles-for-banks"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "PRA",
+    "documentType": "Policy Statement",
+    "commonName": "PRA Operational Resilience (PS6/21)",
+    "url": "https://www.bankofengland.co.uk/prudential-regulation/publication/2021/march/operational-resilience"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "HM Treasury",
+    "documentType": "Primary Legislation",
+    "commonName": "Financial Services and Markets Act 2023",
+    "url": "https://www.legislation.gov.uk/ukpga/2023/29/contents/enacted"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "HM Treasury",
+    "documentType": "Primary Legislation",
+    "commonName": "UK Bribery Act 2010",
+    "url": "https://www.legislation.gov.uk/ukpga/2010/23/contents"
+  },
+  {
+    "vertical": "Data Protection", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "ICO",
+    "documentType": "Guidance",
+    "commonName": "UK GDPR Guide for Organisations",
+    "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/"
+  },
+  {
+    "vertical": "Data Protection", "jurisdiction": "UK", "region": "UK/EU",
+    "authority": "ICO",
+    "documentType": "Code of Practice",
+    "commonName": "ICO Accountability Framework",
+    "url": "https://ico.org.uk/for-organisations/accountability-framework/"
+  },
+
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Capital Requirements Regulation II (CRR II) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019R0876"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Capital Requirements Directive V (CRD V) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019L0878"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Bank Recovery & Resolution Directive (BRRD) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014L0059"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Markets in Financial Instruments Regulation (MiFIR) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014R0600"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Markets in Financial Instruments Directive II (MiFID II) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014L0065"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "European Market Infrastructure Regulation (EMIR) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012R0648"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Digital Operational Resilience Act (DORA) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R2554"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Markets in Crypto-Assets Regulation (MiCA) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1114"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Payment Services Directive 2 (PSD2) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32015L2366"
+  },
+  {
+    "vertical": "Insurance", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Solvency II Directive — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32009L0138"
+  },
+  {
+    "vertical": "Insurance", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Solvency II Review (Omnibus II) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32014L0051"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Alternative Investment Fund Managers Directive (AIFMD) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011L0061"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "Sustainable Finance Disclosure Regulation (SFDR) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019R2088"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "EU Taxonomy Regulation — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32020R0852"
+  },
+  {
+    "vertical": "Data Protection", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "European Parliament",
+    "documentType": "Primary Legislation",
+    "commonName": "General Data Protection Regulation (GDPR) — CELEX",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "EBA",
+    "documentType": "Technical Standard",
+    "commonName": "EBA RTS on Strong Customer Authentication (SCA) under PSD2",
+    "url": "https://www.eba.europa.eu/sites/default/files/documents/10180/1761863/314bd4d5-ccad-47d8-b25a-06b9f08e4537/Final%20Draft%20RTS%20on%20SCA%20and%20CSC%20under%20PSD2%20%28EBA-RTS-2017-02%29.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "EBA",
+    "documentType": "Technical Standard",
+    "commonName": "EBA RTS on Internal Models (FRTB Implementation)",
+    "url": "https://www.eba.europa.eu/regulation-and-policy/market-risk/regulatory-technical-standards-on-the-alternative-internal-model-approach"
+  },
+  {
+    "vertical": "Insurance", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "EIOPA",
+    "documentType": "Guidelines",
+    "commonName": "EIOPA Guidelines on ORSA under Solvency II",
+    "url": "https://www.eiopa.europa.eu/document/download/fde93efa-80d5-4b17-8b77-5ea23adfb0ae_en"
+  },
+  {
+    "vertical": "Insurance", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "EIOPA",
+    "documentType": "Technical Standard",
+    "commonName": "EIOPA Delegated Regulation — Solvency II Pillar 1 Calculations",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32015R0035"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "EU", "region": "UK/EU",
+    "authority": "ESMA",
+    "documentType": "Technical Standard",
+    "commonName": "ESMA RTS on Transparency under MiFIR",
+    "url": "https://www.esma.europa.eu/document/rts-transparency-requirements-equity-non-equity-instruments-under-mifir"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "DE", "region": "UK/EU",
+    "authority": "BaFin",
+    "documentType": "Circular",
+    "commonName": "BaFin Circular 10/2021 (BA) — SREP Principles for Credit Institutions",
+    "url": "https://www.bafin.de/SharedDocs/Veroeffentlichungen/EN/Rundschreiben/2021/rs_2110_ba_srep_en.html"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "FR", "region": "UK/EU",
+    "authority": "AMF",
+    "documentType": "Regulation",
+    "commonName": "AMF General Regulation — MiFID II Implementation",
+    "url": "https://www.amf-france.org/en/regulation/general-regulation-and-instructions/general-regulation"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "IE", "region": "UK/EU",
+    "authority": "CBI",
+    "documentType": "Regulation",
+    "commonName": "CBI Consumer Protection Code 2012 (as amended)",
+    "url": "https://www.centralbank.ie/docs/default-source/regulation/consumer-protection/other-codes-of-conduct/4-gns-4-2-7-2012-consumer-protection-code.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "CH", "region": "UK/EU",
+    "authority": "FINMA",
+    "documentType": "Circular",
+    "commonName": "FINMA Circular 2017/01 — Corporate Governance — Banks",
+    "url": "https://www.finma.ch/en/regulation/circulars/archiv/circular-2017-01-corporate-governance/"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "CH", "region": "UK/EU",
+    "authority": "FINMA",
+    "documentType": "Regulation",
+    "commonName": "FINMA Banking Ordinance (BO) — Capital Requirements",
+    "url": "https://www.finma.ch/en/regulation/regulations/banking-ordinance/"
+  },
+
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "Federal Reserve",
+    "documentType": "Final Rule",
+    "commonName": "Basel III Endgame — US NPR Capital Requirements",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20230727a.htm"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "Federal Reserve",
+    "documentType": "Regulation",
+    "commonName": "Regulation YY — Enhanced Prudential Standards (12 CFR 252)",
+    "url": "https://www.ecfr.gov/current/title-12/chapter-II/subchapter-A/part-252"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "SEC",
+    "documentType": "Final Rule",
+    "commonName": "SEC Climate-Related Disclosures (Release No. 33-11275)",
+    "url": "https://www.sec.gov/rules/final/2024/33-11275.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "SEC",
+    "documentType": "Final Rule",
+    "commonName": "SEC Cybersecurity Risk Management, Strategy & Incident Disclosure",
+    "url": "https://www.sec.gov/rules/final/2023/33-11216.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "CFTC",
+    "documentType": "Final Rule",
+    "commonName": "CFTC Swap Dealer & MSP Registration Requirements (17 CFR 23)",
+    "url": "https://www.ecfr.gov/current/title-17/chapter-I/part-23"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "CFTC",
+    "documentType": "Final Rule",
+    "commonName": "CFTC Capital Requirements for Swap Dealers",
+    "url": "https://www.cftc.gov/LawRegulation/FederalRegister/finalrules/2020-20096.html"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "FINRA",
+    "documentType": "Rule",
+    "commonName": "FINRA Rule 4370 — Business Continuity Plans and Emergency Contacts",
+    "url": "https://www.finra.org/rules-guidance/rulebooks/finra-rules/4370"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "FINRA",
+    "documentType": "Rule",
+    "commonName": "FINRA Rule 3110 — Supervision",
+    "url": "https://www.finra.org/rules-guidance/rulebooks/finra-rules/3110"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "OCC",
+    "documentType": "Final Rule",
+    "commonName": "OCC Community Reinvestment Act (CRA) Final Rule 2023",
+    "url": "https://www.occ.gov/news-issuances/news-releases/2023/nr-ia-2023-106.html"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "CFPB",
+    "documentType": "Final Rule",
+    "commonName": "CFPB Small Business Lending Data Collection Rule (Regulation B)",
+    "url": "https://www.consumerfinance.gov/rules-policy/final-rules/small-business-lending-under-equal-credit-opportunity-act-regulation-b/"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "DOJ / SEC",
+    "documentType": "Legislation",
+    "commonName": "Foreign Corrupt Practices Act (FCPA) — Resource Guide",
+    "url": "https://www.justice.gov/criminal/criminal-fraud/file/1292051/dl"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "US", "region": "AMER",
+    "authority": "FDIC / OCC / Federal Reserve",
+    "documentType": "Interagency Guidance",
+    "commonName": "Interagency Guidance on Third-Party Relationships: Risk Management",
+    "url": "https://www.fdic.gov/news/financial-institution-letters/2023/fil23029.html"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "KY", "region": "AMER",
+    "authority": "CIMA",
+    "documentType": "Regulation",
+    "commonName": "CIMA Regulatory Policy — Virtual Asset Service Providers",
+    "url": "https://www.cima.ky/regulatory-policy-virtual-asset-service-providers"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "VG", "region": "AMER",
+    "authority": "BVIFSC",
+    "documentType": "Act",
+    "commonName": "BVI Securities and Investment Business Act (SIBA) 2010",
+    "url": "https://www.bvifsc.vg/sites/default/files/securities_and_investment_business_act_2010_consolidated.pdf"
+  },
+
+  {
+    "vertical": "Financial Services", "jurisdiction": "SG", "region": "APAC",
+    "authority": "MAS",
+    "documentType": "Notice",
+    "commonName": "MAS Notice 626 — Prevention of Money Laundering (Banks)",
+    "url": "https://www.mas.gov.sg/regulation/notices/notice-626"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "SG", "region": "APAC",
+    "authority": "MAS",
+    "documentType": "Notice",
+    "commonName": "MAS Notice 637 — Risk Based Capital Adequacy Requirements (Banks)",
+    "url": "https://www.mas.gov.sg/regulation/notices/notice-637"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "SG", "region": "APAC",
+    "authority": "MAS",
+    "documentType": "Guidelines",
+    "commonName": "MAS Technology Risk Management Guidelines (2021)",
+    "url": "https://www.mas.gov.sg/publications/monographs-or-information-paper/2021/technology-risk-management-guidelines"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "SG", "region": "APAC",
+    "authority": "MAS",
+    "documentType": "Notice",
+    "commonName": "MAS Notice on Environmental Risk Management (Banks) MAS 1016",
+    "url": "https://www.mas.gov.sg/regulation/notices/mas-notice-1016"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "HK", "region": "APAC",
+    "authority": "SFC",
+    "documentType": "Code",
+    "commonName": "SFC Code of Conduct for Persons Licensed or Registered by the SFC",
+    "url": "https://www.sfc.hk/en/Rules-and-Standards/Codes-and-guidelines/Codes"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "HK", "region": "APAC",
+    "authority": "SFC",
+    "documentType": "Circular",
+    "commonName": "SFC Circular on Licensing Conditions for VA Platforms",
+    "url": "https://www.sfc.hk/en/Regulatory-updates/Circulars/2023"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "HK", "region": "APAC",
+    "authority": "HKMA",
+    "documentType": "Supervisory Policy Manual",
+    "commonName": "HKMA SPM CA-G-1 Guideline on Authorization of Virtual Banks",
+    "url": "https://www.hkma.gov.hk/media/eng/doc/key-functions/banking-stability/supervisory-policy-manual/CA-G-1.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "HK", "region": "APAC",
+    "authority": "HKMA",
+    "documentType": "Supervisory Policy Manual",
+    "commonName": "HKMA SPM CR-G-1 General Principles of Credit Risk Management",
+    "url": "https://www.hkma.gov.hk/media/eng/doc/key-functions/banking-stability/supervisory-policy-manual/CR-G-1.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "JP", "region": "APAC",
+    "authority": "FSA Japan",
+    "documentType": "Act",
+    "commonName": "Financial Instruments and Exchange Act (FIEA) — English Summary",
+    "url": "https://www.fsa.go.jp/en/laws_regulations/fiea.html"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "JP", "region": "APAC",
+    "authority": "FSA Japan",
+    "documentType": "Guidelines",
+    "commonName": "FSA Japan Supervisory Guidelines for Major Banks",
+    "url": "https://www.fsa.go.jp/en/refer/guideline/major_bank.html"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "IN", "region": "APAC",
+    "authority": "SEBI",
+    "documentType": "Regulation",
+    "commonName": "SEBI Listing Obligations and Disclosure Requirements (LODR) 2015",
+    "url": "https://www.sebi.gov.in/legal/regulations/sep-2015/sebi-listing-obligations-and-disclosure-requirements-regulations-2015_26295.html"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "IN", "region": "APAC",
+    "authority": "RBI",
+    "documentType": "Master Direction",
+    "commonName": "RBI Master Direction — Know Your Customer (KYC) 2016",
+    "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=11566"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "IN", "region": "APAC",
+    "authority": "RBI",
+    "documentType": "Master Direction",
+    "commonName": "RBI Master Direction — Information Technology Framework for NBFCs",
+    "url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=11258"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "AU", "region": "APAC",
+    "authority": "APRA",
+    "documentType": "Prudential Standard",
+    "commonName": "CPS 230 Operational Risk Management",
+    "url": "https://www.apra.gov.au/sites/default/files/2023-07/Prudential%20Standard%20CPS%20230%20Operational%20Risk%20Management.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "AU", "region": "APAC",
+    "authority": "APRA",
+    "documentType": "Prudential Standard",
+    "commonName": "CPS 234 Information Security",
+    "url": "https://www.apra.gov.au/sites/default/files/cps_234_july_2019_0.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "AU", "region": "APAC",
+    "authority": "APRA",
+    "documentType": "Prudential Standard",
+    "commonName": "APS 110 Capital Adequacy — Basel III Implementation",
+    "url": "https://www.apra.gov.au/sites/default/files/2023-12/Prudential%20Standard%20APS%20110%20Capital%20Adequacy.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "AU", "region": "APAC",
+    "authority": "ASIC",
+    "documentType": "Regulatory Guide",
+    "commonName": "ASIC RG 104 — Licensing: Meeting the Organisational Competence Obligation",
+    "url": "https://asic.gov.au/regulatory-resources/find-a-document/regulatory-guides/rg-104-licensing-meeting-the-organisational-competence-obligation/"
+  },
+
+  {
+    "vertical": "Financial Services", "jurisdiction": "SA", "region": "ME/AF",
+    "authority": "SAMA",
+    "documentType": "Framework",
+    "commonName": "SAMA Open Banking Policy Framework",
+    "url": "https://www.sama.gov.sa/en-US/Laws/BankingRules/Open%20Banking%20Policy.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "SA", "region": "ME/AF",
+    "authority": "SAMA",
+    "documentType": "Rule",
+    "commonName": "SAMA Cybersecurity Framework",
+    "url": "https://www.sama.gov.sa/en-US/Laws/BankingRules/SAMA%20Cyber%20Security%20Framework.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "AE", "region": "ME/AF",
+    "authority": "UAE Central Bank",
+    "documentType": "Regulation",
+    "commonName": "UAE Central Bank Consumer Protection Standards (2020)",
+    "url": "https://www.centralbank.ae/media/ekfpg5fo/consumer-protection-standards.pdf"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "AE (DIFC)", "region": "ME/AF",
+    "authority": "DFSA",
+    "documentType": "Rulebook",
+    "commonName": "DFSA Rulebook — General Module (GEN)",
+    "url": "https://www.dfsa.ae/regulation/rulebooks/general-module"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "AE (DIFC)", "region": "ME/AF",
+    "authority": "DFSA",
+    "documentType": "Rulebook",
+    "commonName": "DFSA Rulebook — Anti Money Laundering Module (AML)",
+    "url": "https://www.dfsa.ae/regulation/rulebooks/anti-money-laundering-module"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "ZA", "region": "ME/AF",
+    "authority": "FSCA",
+    "documentType": "Act",
+    "commonName": "Financial Sector Regulation Act 9 of 2017 (Twin Peaks)",
+    "url": "https://www.fsca.co.za/Regulatory%20Frameworks/Pages/Financial-Sector-Regulation-Act.aspx"
+  },
+  {
+    "vertical": "Financial Services", "jurisdiction": "ZA", "region": "ME/AF",
+    "authority": "FSCA",
+    "documentType": "Act",
+    "commonName": "Financial Advisory and Intermediary Services Act (FAIS)",
+    "url": "https://www.fsca.co.za/Regulatory%20Frameworks/Pages/FAIS-Act.aspx"
+  }
+]
