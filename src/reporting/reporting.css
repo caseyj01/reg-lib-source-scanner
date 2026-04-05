@@ -199,13 +199,10 @@ html, body {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  position: relative;
-  background: #f8fafc;
 }
 
 .bg-gradient-body-wrap {
   min-height: 100%;
-  position: relative;
 }
 
 .bg-gradient-body-content {
