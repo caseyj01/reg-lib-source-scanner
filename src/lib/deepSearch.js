@@ -104,10 +104,14 @@ function parseResults(text) {
  * @param {string}   options.category     - Category filter (e.g. "Banking"). "All" = all categories.
  * @returns {Promise<Object[]>} Array of regulation objects.
  */
-export async function deepSearch({ query, knownTitles = [], region = 'Global', category = 'All' }) {
-  const { anthropicApiKey } = await chrome.storage.local.get('anthropicApiKey');
+export async function deepSearch({ query, knownTitles = [], region = 'Global', category = 'All', apiKey }) {
+  // Accept apiKey directly, or fall back to chrome.storage.local
+  let anthropicApiKey = apiKey;
+  if (!anthropicApiKey && typeof chrome !== 'undefined' && chrome.storage) {
+    ({ anthropicApiKey } = await chrome.storage.local.get('anthropicApiKey'));
+  }
   if (!anthropicApiKey) {
-    throw new Error('No API key set. Add it in extension settings (gear icon).');
+    throw new Error('No Anthropic API key set. Enter your key in the scanner settings.');
   }
 
   const regionClause   = region !== 'Global' ? ` in the ${region} region` : '';

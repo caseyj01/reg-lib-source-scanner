@@ -1,55 +1,77 @@
-import React, { useState, useRef } from 'react';
-import { SOURCES }            from '../lib/sources.js';
-import { useNotifications }   from './components/BackgroundTaskManager.jsx';
-import seedUrls                from './data/seedData.json';
-import webFindings             from './data/webFindings.json';
+import React, { useState, useRef, useEffect } from 'react';
+import { SOURCES }           from '../lib/sources.js';
+import { deepSearch }        from '../lib/deepSearch.js';
+import { useNotifications }  from './components/BackgroundTaskManager.jsx';
+import seedUrls               from './data/seedData.json';
 
-// URLs already in our reg library (used to prevent duplicate findings)
+// URLs already in the reg library — dedup against these
 const SEED_URLS = new Set(seedUrls.map(u => u.replace('http://', 'https://')));
 
-// Only Banking / Financial Services verticals
-const BANKING_VERTICALS = ['Banking', 'Financial Services'];
+// Regions to sweep per scan
+const SCAN_REGIONS = ['Global', 'UK/EU', 'AMER', 'APAC', 'ME/AF'];
 
-// ── Simulate crawling the web and returning direct-link findings ──────────────
-function simulateScan(onProgress, stopRef) {
-  return new Promise(async (resolve) => {
-    const found    = [];
-    const seenUrls = new Set();
-    const total    = SOURCES.length;
+// ── API key storage (chrome.storage in extension, localStorage in dev) ────────
+async function loadApiKey() {
+  if (typeof chrome !== 'undefined' && chrome.storage?.local) {
+    return new Promise(resolve =>
+      chrome.storage.local.get('anthropicApiKey', d => resolve(d.anthropicApiKey || ''))
+    );
+  }
+  return localStorage.getItem('reg-api-key') || '';
+}
+function saveApiKey(key) {
+  if (typeof chrome !== 'undefined' && chrome.storage?.local) {
+    chrome.storage.local.set({ anthropicApiKey: key });
+  }
+  localStorage.setItem('reg-api-key', key);
+}
 
-    for (let i = 0; i < total; i++) {
-      if (stopRef.current) break;
+// ── Live web scan via Anthropic API ──────────────────────────────────────────
+async function runWebScan(apiKey, onProgress, stopRef) {
+  const found    = [];
+  const seenUrls = new Set();
+  const total    = SCAN_REGIONS.length;
 
-      const source = SOURCES[i];
-      await new Promise(r => setTimeout(r, 80 + Math.random() * 220));
-      if (stopRef.current) break;
+  for (let i = 0; i < total; i++) {
+    if (stopRef.current) break;
+    const region = SCAN_REGIONS[i];
+    onProgress({ done: i, total, source: `Searching ${region}…`, found: found.length });
 
-      const candidates = webFindings.filter(doc =>
-        BANKING_VERTICALS.includes(doc.vertical) &&
-        (doc.region === source.region || doc.region === 'Global' || source.region === 'Global')
-      );
+    try {
+      const results = await deepSearch({
+        query:       'binding banking and financial services regulations primary secondary legislation',
+        knownTitles: [],   // URL-level dedup below is more reliable
+        region,
+        category:    'Banking',
+        apiKey,
+      });
 
-      const shuffled = candidates.sort(() => Math.random() - 0.5);
-      for (const doc of shuffled.slice(0, Math.random() > 0.5 ? 2 : 1)) {
-        if (seenUrls.has(doc.url)) continue;
-        seenUrls.add(doc.url);
+      for (const doc of results) {
+        if (!doc.sourceUrl) continue;
+        const normUrl = doc.sourceUrl.replace('http://', 'https://');
+        if (seenUrls.has(normUrl)) continue;
+        seenUrls.add(normUrl);
         found.push({
           id:             `found-${found.length + 1}`,
-          vertical:       doc.vertical,
-          jurisdiction:   doc.jurisdiction,
-          authority:      doc.authority,
-          documentType:   doc.documentType,
-          commonName:     doc.commonName,
-          url:            doc.url,
-          alreadyCovered: SEED_URLS.has(doc.url.replace('http://', 'https://')),
+          vertical:       'Financial Services',
+          jurisdiction:   doc.jurisdiction  || doc.region || '',
+          authority:      doc.authority     || '',
+          documentType:   doc.type          || '',
+          commonName:     doc.title         || doc.sourceUrl,
+          url:            doc.sourceUrl,
+          alreadyCovered: SEED_URLS.has(normUrl),
+          summary:        doc.summary       || '',
         });
       }
-
-      onProgress({ done: i + 1, total, source: source.label, found: found.length });
+    } catch (err) {
+      console.warn(`Web scan for ${region} failed:`, err.message);
     }
 
-    resolve(found);
-  });
+    onProgress({ done: i + 1, total, source: `${region} complete`, found: found.length });
+    if (stopRef.current) break;
+  }
+
+  return found;
 }
 
 // ── CSV export ────────────────────────────────────────────────────────────────
@@ -95,7 +117,12 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
               <td>{row.jurisdiction}</td>
               <td>{row.authority}</td>
               <td className="td-name" title={row.commonName}>{row.commonName}</td>
-              <td><span className={`leg-badge leg-badge--${row.documentType?.toLowerCase().includes('primary') ? 'primary' : row.documentType?.toLowerCase().includes('secondary') ? 'secondary' : 'other'}`}>{row.documentType || '—'}</span></td>
+              <td>
+                <span className={`leg-badge leg-badge--${
+                  row.documentType?.toLowerCase().includes('primary')   ? 'primary'   :
+                  row.documentType?.toLowerCase().includes('secondary') ? 'secondary' : 'other'
+                }`}>{row.documentType || '—'}</span>
+              </td>
               <td className="td-url">
                 <a href={row.url} target="_blank" rel="noreferrer noopener" className="open-btn" title={row.url}>
                   <svg width="10" height="10" viewBox="0 0 11 11" fill="none">
@@ -120,7 +147,7 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
   );
 }
 
-// ── Current Regulatory Documents tab ─────────────────────────────────────────
+// ── Current Reg Docs tab ──────────────────────────────────────────────────────
 function CurrentDocsTab() {
   return (
     <div className="rp-body">
@@ -132,11 +159,10 @@ function CurrentDocsTab() {
           </div>
         </div>
       </div>
-
       <div className="rp-panel">
         <div className="rp-panel-head">
           <div className="rp-panel-title">Monitored Sources</div>
-          <div className="rp-panel-sub">{SOURCES.length} sources crawled on each scan</div>
+          <div className="rp-panel-sub">{SOURCES.length} sources used as scan context</div>
         </div>
         <div className="source-list">
           {SOURCES.map(s => (
@@ -159,34 +185,54 @@ function CurrentDocsTab() {
 export function ReportingPage() {
   const [tab,      setTab]      = useState('docs');
   const [phase,    setPhase]    = useState('idle');
-  const [progress, setProgress] = useState({ done: 0, total: SOURCES.length, source: '', found: 0 });
+  const [progress, setProgress] = useState({ done: 0, total: SCAN_REGIONS.length, source: '', found: 0 });
   const [findings, setFindings] = useState([]);
   const [notify,   setNotify]   = useState(true);
   const [toast,    setToast]    = useState(null);
+  const [apiKey,   setApiKey]   = useState('');
+  const [showKey,  setShowKey]  = useState(false);
+  const [keySaved, setKeySaved] = useState(false);
 
   const stopRef = useRef(false);
   const { notify: pushNotify } = useNotifications();
 
+  // Load persisted API key on mount
+  useEffect(() => {
+    loadApiKey().then(k => { if (k) setApiKey(k); });
+  }, []);
+
   function showToast(msg, type = 'success') {
     setToast({ msg, type });
-    setTimeout(() => setToast(null), 5000);
+    setTimeout(() => setToast(null), 6000);
+  }
+
+  function handleSaveKey() {
+    saveApiKey(apiKey);
+    setKeySaved(true);
+    setTimeout(() => setKeySaved(false), 2000);
+    setShowKey(false);
   }
 
   async function handleRun() {
     if (phase === 'scanning') return;
+    if (!apiKey) {
+      setShowKey(true);
+      showToast('Enter your Anthropic API key to run a live web scan.', 'warn');
+      return;
+    }
     try {
       stopRef.current = false;
       setPhase('scanning');
       setFindings([]);
-      setProgress({ done: 0, total: SOURCES.length, source: '', found: 0 });
+      setProgress({ done: 0, total: SCAN_REGIONS.length, source: '', found: 0 });
 
-      const results = await simulateScan(p => setProgress({ ...p }), stopRef);
+      const results = await runWebScan(apiKey, p => setProgress({ ...p }), stopRef);
 
       setFindings(results);
       setPhase('done');
 
       const newCount = results.filter(r => !r.alreadyCovered).length;
-      const msg = `${newCount} new document${newCount !== 1 ? 's' : ''} found.`;
+      const msg = `${newCount} new document${newCount !== 1 ? 's' : ''} found across the web.`;
       showToast(msg);
       if (notify) pushNotify('✅ Scan complete — Reg Library', msg, () => window.focus());
     } catch (err) {
@@ -198,16 +244,16 @@ export function ReportingPage() {
 
   function handleStop() { stopRef.current = true; }
 
-  const isScanning = phase === 'scanning';
-  const isDone     = phase === 'done';
-  const pct        = Math.round((progress.done / progress.total) * 100);
+  const isScanning  = phase === 'scanning';
+  const isDone      = phase === 'done';
+  const pct         = Math.round((progress.done / progress.total) * 100);
   const newFindings = findings.filter(r => !r.alreadyCovered);
 
   const statusText = isScanning
-    ? `Scanning… ${pct}%`
+    ? `${progress.source} (${pct}%)`
     : isDone
       ? `${newFindings.length} new · ${findings.filter(r => r.alreadyCovered).length} already covered`
-      : 'Ready';
+      : apiKey ? 'Ready' : 'API key required';
 
   return (
     <div className="rp-root">
@@ -224,10 +270,10 @@ export function ReportingPage() {
       <header className="rp-header">
         <div className="rp-brand">VIXIO REGULATORY INTELLIGENCE</div>
         <h1 className="rp-title">Banking Compliance Reg Library Finder</h1>
-        <p className="rp-subtitle">Web-wide scan for new documents not yet in your library.</p>
+        <p className="rp-subtitle">Live web scan for new documents not yet in your library.</p>
         <div className="rp-header-actions">
           <button className="rp-hbtn" onClick={handleRun} disabled={isScanning}>
-            {isScanning ? 'Running…' : 'Run Scan'}
+            {isScanning ? 'Scanning…' : 'Run Scan'}
           </button>
           <button
             className="rp-hbtn"
@@ -236,7 +282,28 @@ export function ReportingPage() {
           >
             Export CSV
           </button>
+          <button className={`rp-hbtn ${!apiKey ? 'rp-hbtn--warn' : ''}`} onClick={() => setShowKey(v => !v)}>
+            {apiKey ? '🔑 Key set' : '🔑 Set API key'}
+          </button>
         </div>
+
+        {/* API key input */}
+        {showKey && (
+          <div className="rp-api-key-wrap">
+            <input
+              className="rp-api-key-input"
+              type="password"
+              placeholder="sk-ant-…"
+              value={apiKey}
+              onChange={e => setApiKey(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleSaveKey()}
+              autoFocus
+            />
+            <button className="rp-api-key-save" onClick={handleSaveKey}>
+              {keySaved ? '✓ Saved' : 'Save'}
+            </button>
+          </div>
+        )}
       </header>
 
       {/* ── Tabs ────────────────────────────────────────────────────────────── */}
@@ -295,40 +362,40 @@ export function ReportingPage() {
                 <div className="rp-progress-fill" style={{ width: `${pct}%` }} />
               </div>
               <div className="rp-progress-label">
-                <span>Scanning: <strong title={progress.source}>{progress.source}</strong></span>
+                <span><strong title={progress.source}>{progress.source}</strong></span>
                 <span className="rp-progress-right">
-                  {progress.done}/{progress.total} · {progress.found} found
+                  {progress.done}/{progress.total} regions · {progress.found} found
                   <button className="rp-stop" onClick={handleStop}>Stop</button>
                 </span>
               </div>
             </div>
           )}
 
-          {/* Library count panel */}
+          {/* Library info */}
           <div className="rp-panel">
             <div className="rp-panel-head">
               <div className="rp-panel-title">Your Reg Library</div>
               <div className="rp-panel-sub">
-                {seedUrls.length.toLocaleString()} documents — new findings are deduplicated against this list.
+                {seedUrls.length.toLocaleString()} documents — findings are deduplicated against this list.
               </div>
             </div>
           </div>
 
-          {/* Findings panel */}
+          {/* Findings */}
           <div className="rp-panel">
             <div className="rp-panel-head">
               <div className="rp-panel-title">Documents Found Online</div>
               <div className="rp-panel-sub">
                 {isScanning
-                  ? `Searching across ${seedUrls.length.toLocaleString()} library URLs…`
+                  ? `Live web scan in progress across ${SCAN_REGIONS.length} regions…`
                   : isDone
                     ? `${newFindings.length} new · ${findings.filter(r => r.alreadyCovered).length} already in library`
-                    : 'Run a search to find new regulatory documents.'}
+                    : 'Run a scan to search the web for new regulatory documents.'}
               </div>
             </div>
             <DocTable
               rows={findings}
-              emptyMsg={isScanning ? 'Searching…' : 'Run a search to find new regulatory documents.'}
+              emptyMsg={isScanning ? 'Searching the web…' : 'Run a scan to find new regulatory documents.'}
               showCoveredBadge
             />
           </div>
