@@ -3,7 +3,6 @@ import { SOURCES }           from '../lib/sources.js';
 import { deepSearch }        from '../lib/deepSearch.js';
 import { useNotifications }  from './components/BackgroundTaskManager.jsx';
 import { FloatingPaths }          from './components/FloatingPaths.jsx';
-import { ButtonColorful }         from './components/ButtonColorful.jsx';
 import seedUrls               from './data/seedData.json';
 import webFindings            from './data/webFindings.json';
 
@@ -300,15 +299,19 @@ export function ReportingPage() {
         <h1 className="rp-title">Banking Regulation Finder</h1>
         <p className="rp-subtitle">Live web scan for new documents not yet in the reg library.</p>
         <div className="rp-header-actions">
-          <ButtonColorful onClick={handleRun} disabled={isScanning}>
-            {isScanning ? 'Scanning…' : 'Run Scan'}
-          </ButtonColorful>
-          <ButtonColorful
+          <button className="rp-hbtn" onClick={handleRun} disabled={isScanning}>
+            {isScanning ? 'Scanning…' : 'Run Now'}
+          </button>
+          <button className="rp-hbtn" onClick={() => {}} disabled>
+            Findings Table
+          </button>
+          <button
+            className="rp-hbtn"
             onClick={() => downloadCSV(newFindings, `reg-new-${new Date().toISOString().slice(0,10)}.csv`)}
             disabled={newFindings.length === 0}
           >
             Export CSV
-          </ButtonColorful>
+          </button>
           <span className={`rp-mode-badge ${liveMode ? 'rp-mode-badge--live' : 'rp-mode-badge--demo'}`}>
             {liveMode ? '● Live' : '○ Demo'}
           </span>
@@ -322,19 +325,20 @@ export function ReportingPage() {
           {/* Action bar */}
           <div className="rp-action-bar">
             <div className="rp-action-row">
-              <ButtonColorful onClick={handleRun} disabled={isScanning}>
+              <button className="rp-btn rp-btn--blue" onClick={handleRun} disabled={isScanning}>
                 {isScanning ? 'Scanning…' : 'Run Doc Search'}
-              </ButtonColorful>
-              <ButtonColorful
+              </button>
+              <button
+                className="rp-btn rp-btn--green"
                 onClick={() => downloadCSV(newFindings, `reg-new-${new Date().toISOString().slice(0,10)}.csv`)}
                 disabled={newFindings.length === 0}
               >
                 Export New
-              </ButtonColorful>
+              </button>
               {scannedAt && (
-                <ButtonColorful onClick={handleClearCache}>
+                <button className="rp-btn rp-btn--ghost" onClick={handleClearCache}>
                   Clear Cache
-                </ButtonColorful>
+                </button>
               )}
               <label className="rp-notify-label">
                 <input type="checkbox" checked={notify} onChange={e => setNotify(e.target.checked)} />
