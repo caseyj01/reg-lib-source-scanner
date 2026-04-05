@@ -567,6 +567,122 @@ export const SOURCES = [
   },
 
   // ══════════════════════════════════════════════════════════════════════════
+  // MAJOR FRAMEWORKS — dedicated source pages
+  // ══════════════════════════════════════════════════════════════════════════
+
+  // AML / CFT
+  {
+    id: 'fatf-amlcft-guidance',
+    region: 'Global', regulator: 'FATF',
+    label: 'FATF AML/CFT Risk-Based Approach Guidance',
+    url: 'https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Risk-based-approach-guidance-for-the-banking-sector.html',
+    category: 'AML / CFT',
+    selector: '.publication-list li, article',
+  },
+
+  // GDPR
+  {
+    id: 'edpb-gdpr-guidelines',
+    region: 'UK/EU', regulator: 'EDPB',
+    label: 'EDPB GDPR Guidelines & Recommendations',
+    url: 'https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines_en',
+    category: 'Data Protection',
+    selector: '.views-row, .document-list li, article',
+  },
+  {
+    id: 'eurlex-gdpr',
+    region: 'UK/EU', regulator: 'EUR-Lex',
+    label: 'EU General Data Protection Regulation (GDPR)',
+    url: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679',
+    category: 'Data Protection',
+    selector: '.docTitle, .title',
+  },
+
+  // Basel III / IV
+  {
+    id: 'bcbs-basel3',
+    region: 'Global', regulator: 'BCBS / BIS',
+    label: 'BCBS Basel III / IV Capital Framework',
+    url: 'https://www.bis.org/bcbs/basel3.htm',
+    category: 'Prudential',
+    selector: 'table.tablesorter tbody tr, .elist li',
+  },
+
+  // MiFID II
+  {
+    id: 'eurlex-mifid2',
+    region: 'UK/EU', regulator: 'EUR-Lex',
+    label: 'Markets in Financial Instruments Directive II (MiFID II)',
+    url: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0065',
+    category: 'Securities',
+    selector: '.docTitle, .title',
+  },
+  {
+    id: 'esma-mifid2',
+    region: 'UK/EU', regulator: 'ESMA',
+    label: 'ESMA MiFID II Q&A & Technical Standards',
+    url: 'https://www.esma.europa.eu/rules-databases-library/mifid-ii-and-mifir',
+    category: 'Securities',
+    selector: '.views-row, .document-list li',
+  },
+
+  // Solvency II
+  {
+    id: 'eurlex-solvency2',
+    region: 'UK/EU', regulator: 'EUR-Lex',
+    label: 'Solvency II Directive',
+    url: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32009L0138',
+    category: 'Insurance',
+    selector: '.docTitle, .title',
+  },
+
+  // IFRS — additional standards page
+  {
+    id: 'ifrs-sustainability',
+    region: 'Global', regulator: 'IFRS Foundation',
+    label: 'IFRS Sustainability Disclosure Standards (ISSB)',
+    url: 'https://www.ifrs.org/groups/international-sustainability-standards-board/',
+    category: 'ESG / Disclosure',
+    selector: '.standard-item, .content-list li',
+  },
+
+  // FCPA
+  {
+    id: 'doj-fcpa',
+    region: 'AMER', regulator: 'DOJ',
+    label: 'DOJ Foreign Corrupt Practices Act (FCPA) Resources',
+    url: 'https://www.justice.gov/criminal-fraud/foreign-corrupt-practices-act',
+    category: 'Anti-Bribery',
+    selector: '.view-content li, .menu-block-wrapper li, article',
+  },
+  {
+    id: 'sec-fcpa',
+    region: 'AMER', regulator: 'SEC',
+    label: 'SEC FCPA Enforcement Actions',
+    url: 'https://www.sec.gov/divisions/enforce/fcpa.shtml',
+    category: 'Anti-Bribery',
+    selector: 'table tbody tr, .content-list li',
+  },
+
+  // UK Bribery Act
+  {
+    id: 'sfo-bribery-act',
+    region: 'UK/EU', regulator: 'SFO',
+    label: 'SFO UK Bribery Act Guidance & Cases',
+    url: 'https://www.sfo.gov.uk/publications/',
+    category: 'Anti-Bribery',
+    selector: '.publication-list li, article, .result-item',
+  },
+  {
+    id: 'legislation-bribery-act',
+    region: 'UK/EU', regulator: 'UK Government',
+    label: 'UK Bribery Act 2010',
+    url: 'https://www.legislation.gov.uk/ukpga/2010/23/contents',
+    category: 'Anti-Bribery',
+    selector: '.LegContents li, .legItem',
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
   // OTHER KEY JURISDICTIONS
   // ══════════════════════════════════════════════════════════════════════════
   {
