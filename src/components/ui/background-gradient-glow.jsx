@@ -1,0 +1,26 @@
+import { cn } from '@/lib/utils';
+
+const GRADIENT = `
+  linear-gradient(135deg,
+    rgba(248,250,252,0.6) 0%,
+    rgba(219,234,254,0.35) 30%,
+    rgba(165,180,252,0.25) 60%,
+    rgba(129,140,248,0.3) 100%
+  ),
+  radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 40%),
+  radial-gradient(circle at 80% 70%, rgba(199,210,254,0.2) 0%, transparent 50%),
+  radial-gradient(circle at 40% 80%, rgba(224,231,255,0.15) 0%, transparent 60%)
+`;
+
+export function BackgroundGradientGlow({ className, children }) {
+  return (
+    <div
+      className={cn('bg-gradient-body-wrap', className)}
+      style={{ backgroundImage: GRADIENT }}
+    >
+      <div className="bg-gradient-body-content">
+        {children}
+      </div>
+    </div>
+  );
+}
