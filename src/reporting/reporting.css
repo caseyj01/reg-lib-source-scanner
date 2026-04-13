@@ -305,6 +305,43 @@ html, body {
 }
 .rp-progress-label strong { color: #0f172a; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rp-progress-label .rp-progress-right { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+.rp-eta { color: #f59e0b; font-size: 11px; white-space: nowrap; }
+
+/* ── Banding filter ──────────────────────────────────────────────────────────── */
+.banding-filter-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.banding-filter-label { font-size: 11px; color: #6b7280; font-weight: 500; }
+.banding-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;
+  border: 1px solid #e5e7eb; background: #f9fafb; color: #374151;
+  cursor: pointer; transition: all 0.15s;
+}
+.banding-chip:hover { border-color: #9ca3af; }
+.banding-chip--active { border-width: 1.5px; font-weight: 600; }
+.banding-chip-count { font-size: 10px; opacity: 0.7; }
+
+/* ── Banding badge (table cell) ──────────────────────────────────────────────── */
+.banding-badge {
+  display: inline-block; padding: 1px 6px; border-radius: 10px;
+  font-size: 10px; font-weight: 600; white-space: nowrap;
+}
+.banding-badge--unrated { color: #9ca3af; background: transparent; }
+.td-jurisdiction { font-size: 11px; color: #4b5563; white-space: nowrap; max-width: 120px; overflow: hidden; text-overflow: ellipsis; }
+.td-date { font-size: 11px; color: #6b7280; white-space: nowrap; }
+
+/* ── History authority groups ────────────────────────────────────────────────── */
+.hist-authority-list { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+.hist-authority-group { border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; }
+.hist-authority-row {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 7px 12px; background: #f9fafb; border: none; cursor: pointer;
+  font-size: 12px; text-align: left;
+}
+.hist-authority-row:hover { background: #f3f4f6; }
+.hist-authority-name { font-weight: 600; color: #111827; flex: 1; }
+.hist-authority-meta { font-size: 11px; color: #6b7280; }
+.hist-new-dot { color: #15803d; font-weight: 500; }
+.hist-authority-chevron { font-size: 9px; color: #9ca3af; }
 .rp-stop {
   font-size: 10px;
   padding: 2px 8px;

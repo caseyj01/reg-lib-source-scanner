@@ -71,6 +71,9 @@ export default defineConfig({
   resolve: {
     alias: { '@': resolve(__dirname, 'src') },
   },
+  server: {
+    port: 3001,
+  },
   // Use relative base so script/css paths in the popup HTML are relative,
   // which is required for chrome-extension:// page loads.
   base: './',

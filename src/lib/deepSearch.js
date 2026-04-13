@@ -8,8 +8,25 @@
  *   VITE_PROXY_TOKEN (optional bearer token for auth)
  */
 
-const PROXY_URL   = import.meta.env.VITE_PROXY_URL   ?? 'http://localhost:3001';
-const PROXY_TOKEN = import.meta.env.VITE_PROXY_TOKEN ?? '';
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY ?? '';
+const GEMINI_MODEL   = import.meta.env.VITE_GEMINI_MODEL ?? 'gemini-2.5-flash';
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+
+// ── Runtime key support (Chrome extension settings) ───────────────────────────
+let _storedKeyPromise;
+function getStoredGeminiApiKey() {
+  if (_storedKeyPromise) return _storedKeyPromise;
+  _storedKeyPromise = new Promise((resolve) => {
+    try {
+      const storage = globalThis?.chrome?.storage?.local;
+      if (!storage?.get) return resolve('');
+      storage.get(['geminiApiKey'], (data) => resolve((data?.geminiApiKey || '').trim()));
+    } catch {
+      resolve('');
+    }
+  });
+  return _storedKeyPromise;
+}
 
 // ── Input sanitization ────────────────────────────────────────────────────────
 // Strip characters and patterns that could be used for prompt injection.
@@ -38,14 +55,16 @@ function sanitize(str) {
 function buildSystemPrompt() {
   return `You are a specialist regulatory compliance analyst for banking and financial services.
 
-For the given regulatory authority, produce a comprehensive compliance requirements matrix covering everything banks and financial institutions need to be aware of — not just primary legislation but also guidance, circulars, supervisory expectations, codes of conduct, technical standards, and regulatory notices.
+For the given regulatory authority or jurisdiction, produce a comprehensive compliance requirements matrix covering what banks and financial institutions need to follow in practice.
 
 Rules:
-1. Include ALL relevant regulatory material: primary legislation, statutory instruments, final rules, supervisory statements, guidance notes, circulars, codes of practice, technical standards, regulatory notices, and enforceable expectations.
-2. Cover ALL major compliance areas relevant to this authority: AML/CFT, KYC/CDD, governance & accountability, transaction monitoring, suspicious activity reporting, sanctions, consumer protection, fraud prevention, data protection, operational resilience, outsourcing, recordkeeping, capital adequacy, conduct of business — include everything this authority touches.
-3. Each row is ONE specific requirement or expectation with a precise citation and real working URLs to official sources.
-4. Aim for 20-30 rows covering the full breadth of this authority's remit — be thorough, do not stop at 10.
-5. Search the authority's official website, legislation databases, and regulatory handbooks to find current in-force material.
+1. Include a mix of binding and enforceable sources: primary legislation/acts, secondary legislation (regulations/statutory instruments/decrees/orders), binding rules in official rulebooks/handbooks, technical standards, supervisory statements, official guidance, circulars, regulatory notices, and enforceable expectations.
+2. Exclude: speeches, consultations, Q&As, thematic reviews, blog posts, and press releases (unless they are explicitly a regulatory notice with enforceable requirements).
+3. Cover ALL major compliance areas relevant to this authority: AML/CFT, KYC/CDD, governance & accountability, transaction monitoring, suspicious activity reporting, sanctions, consumer protection, fraud prevention, data protection, operational resilience, outsourcing, recordkeeping, capital adequacy, conduct of business — include everything this authority touches.
+4. Each row is ONE specific requirement or expectation with a precise citation and real working URLs to official sources.
+5. Aim for 60-100 rows covering the full breadth of this authority's remit — be thorough, do not stop at 20.
+6. Search the authority's official website, legislation databases, and regulatory handbooks to find current in-force material.
+7. URLs must point to the actual regulation document, section, or page — NOT to contents pages, index pages, or table-of-contents URLs (e.g. never use URLs ending in /contents or /contents/enacted).
 
 Return ONLY a raw JSON array (no markdown, no preamble). Each object must have exactly these fields:
 {
@@ -59,7 +78,8 @@ Return ONLY a raw JSON array (no markdown, no preamble). Each object must have e
   "sourceUrl2": string,
   "sourceUrl2Type": string,
   "authority": string,
-  "jurisdiction": string
+  "jurisdiction": string,
+  "publishedDate": string
 }
 
 Field definitions:
@@ -72,7 +92,8 @@ Field definitions:
 - sourceUrl2: URL to secondary source (guidance, handbook chapter, or supporting document)
 - sourceUrl2Type: short label describing the link (same format as sourceUrl1Type)
 - authority: full official name of the regulatory authority
-- jurisdiction: country or region (e.g. "United Kingdom", "European Union", "United States")`
+- jurisdiction: country or region (e.g. "United Kingdom", "European Union", "United States")
+- publishedDate: the date this document was published or came into force, as printed on the document or official source page, in format "DD Mon YYYY" (e.g. "14 Jan 2024") — leave empty string if not found`
 }
 
 // KNOWN_AUTHORITIES is now a plain string array (names only)
@@ -95,7 +116,7 @@ function parseResults(text) {
 }
 
 // ── Core search ───────────────────────────────────────────────────────────────
-export async function deepSearch({ query, region = 'Global', category = 'All' }) {
+export async function deepSearch({ query, region = 'Global', category = 'All', targetUrls = [] }) {
   const safeQuery    = sanitize(query);
   const safeRegion   = sanitize(region);
   const safeCategory = sanitize(category);
@@ -103,39 +124,108 @@ export async function deepSearch({ query, region = 'Global', category = 'All' })
   const regionClause   = safeRegion !== 'Global' ? ` (${safeRegion} region)` : '';
   const categoryClause = safeCategory !== 'All'  ? `, focusing on ${safeCategory}` : '';
 
+  const safeTargetUrls = targetUrls
+    .filter(u => typeof u === 'string')
+    .map(u => u.trim())
+    .filter(Boolean)
+    .slice(0, 8);
+
+  const preferredSourcesClause = safeTargetUrls.length > 0
+    ? `\n\nPreferred official sources (use these first; do not invent other "official" sites):\n${safeTargetUrls.map(u => `- ${u}`).join('\n')}`
+    : '';
+
   const userMessage = `Regulatory authority: ${safeQuery}${regionClause}
 
 Search the official website, published rulebook, handbook, and legislation of ${safeQuery}. Extract the specific compliance requirements that banks and financial institutions must meet${categoryClause}.
 
-Include: primary legislation, statutory instruments, final rules, supervisory statements, prudential standards, conduct of business rules, codes of practice, and technical standards.
+Include: primary legislation, secondary legislation (regulations/statutory instruments/decrees/orders), binding rules in official handbooks/rulebooks, technical standards, supervisory statements, official guidance, circulars, regulatory notices, and enforceable expectations.
 
 Exclude: consultation papers, speeches, Q&As, thematic reviews, Dear CEO letters, and non-binding industry guidance.
 
-For each requirement provide a direct link to the source documentation. Aim for 20-30 rows covering the full breadth of this authority's remit.`;
+For each requirement provide a direct link to the binding source documentation. Aim for 60-100 rows covering the full breadth of this authority's remit.
 
-  const geminiBody = {
-    contents: [{ role: 'user', parts: [{ text: userMessage }] }],
-    systemInstruction: { parts: [{ text: buildSystemPrompt() }] },
-    tools: [{ googleSearch: {} }],
-    generationConfig: { maxOutputTokens: 10000 },
-  };
+If you cannot find enough material on official sites, broaden to official government legislation databases and gazettes for that jurisdiction, then to reputable legal databases that deep-link to the official text.${preferredSourcesClause}`;
 
-  const headers = { 'Content-Type': 'application/json' };
-  if (PROXY_TOKEN) headers['Authorization'] = `Bearer ${PROXY_TOKEN}`;
+  async function callGemini(messageText) {
+    const geminiBody = {
+      contents: [{ role: 'user', parts: [{ text: messageText }] }],
+      systemInstruction: { parts: [{ text: buildSystemPrompt() }] },
+      tools: [{ googleSearch: {} }],
+      generationConfig: { maxOutputTokens: 12000 },
+    };
 
-  const response = await fetch(`${PROXY_URL}/api/search`, {
-    method:  'POST',
-    headers,
-    body:    JSON.stringify(geminiBody),
-  });
+    const runtimeKey = (await getStoredGeminiApiKey()) || GEMINI_API_KEY;
+    if (!runtimeKey) {
+      throw new Error('Gemini API key not set. Add it in extension Settings (Gemini API Key) or set VITE_GEMINI_API_KEY at build time.');
+    }
 
-  if (!response.ok) {
-    const err = await response.json().catch(() => ({}));
-    throw new Error(`Search failed (${response.status}): ${err.error || response.statusText}`);
+    const url = `${GEMINI_API_URL}?key=${encodeURIComponent(runtimeKey)}`;
+    const MAX_RETRIES = 3;
+    const BASE_DELAY_MS = 1500;
+
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      const response = await fetch(url, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(geminiBody),
+      });
+
+      // Retry on 503 overloads
+      if (response.status === 503 && attempt < MAX_RETRIES) {
+        await new Promise(r => setTimeout(r, BASE_DELAY_MS * attempt));
+        continue;
+      }
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        const msg =
+          (typeof err?.error?.message === 'string' && err.error.message) ||
+          (typeof err?.message === 'string' && err.message) ||
+          (typeof err?.error === 'string' && err.error) ||
+          (() => {
+            try { return JSON.stringify(err); } catch { return String(err); }
+          })() ||
+          response.statusText;
+        throw new Error(`Search failed (${response.status}) via Gemini direct (${GEMINI_MODEL}): ${msg}`);
+      }
+
+      const data = await response.json();
+      return parseResults(extractText(data));
+    }
+
+    throw new Error(`Search failed (503) via Gemini direct (${GEMINI_MODEL}): model overloaded after retries`);
   }
 
-  const data = await response.json();
-  return parseResults(extractText(data));
+  // Multi-pass: get a large binding-only set, then ask for additional non-overlapping rows.
+  const pass1 = await callGemini(userMessage);
+
+  const seen = new Set();
+  const out = [];
+  for (const r of pass1) {
+    const key = `${(r?.reference || '').trim().toLowerCase()}|${(r?.sourceUrl1 || '').trim().toLowerCase()}`;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(r);
+  }
+
+  if (out.length < 60) {
+    const morePrompt = `${userMessage}
+
+Now return ADDITIONAL binding requirements that do NOT overlap with the following citations/URLs (avoid duplicates):
+${out.slice(0, 80).map(r => `- ${String(r.reference || '').slice(0, 140)} | ${String(r.sourceUrl1 || '').slice(0, 180)}`).join('\n')}
+
+Return ONLY a raw JSON array with the exact same schema as before.`;
+
+    const pass2 = await callGemini(morePrompt);
+    for (const r of pass2) {
+      const key = `${(r?.reference || '').trim().toLowerCase()}|${(r?.sourceUrl1 || '').trim().toLowerCase()}`;
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      out.push(r);
+    }
+  }
+
+  return out;
 }
 
 // ── Multi-region sweep ────────────────────────────────────────────────────────

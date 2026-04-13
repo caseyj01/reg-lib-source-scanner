@@ -1,35 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { SOURCES }           from '../lib/sources.js';
 import { deepSearch }        from '../lib/deepSearch.js';
 import { ADDITIONAL_AUTHORITIES } from '../lib/additionalAuthorities.js';
+import { getBanding, BANDING_STYLE, BANDING_ORDER, JURISDICTION_BANDINGS } from '../lib/jurisdictions.js';
+import { toTemplateRows, downloadTemplateCSV, downloadTemplateXLSX } from '../lib/exportToTemplate.js';
 import { useNotifications }  from './components/BackgroundTaskManager.jsx';
 import { FloatingPaths }          from './components/FloatingPaths.jsx';
 import { BackgroundGradientGlow } from '../components/ui/background-gradient-glow.jsx';
 import seedUrls               from './data/seedData.json';
 import webFindings            from './data/webFindings.json';
+import scanTargetsSheet       from './data/scanTargets.sheet.json';
 
 // URLs already in the reg library — dedup against these
 const SEED_URLS = new Set(seedUrls.map(u => u.replace('http://', 'https://')));
 
 const BANKING_VERTICALS = ['Banking', 'Financial Services'];
 
-// Use every SOURCES entry as its own scan target (monitored)
-const SCAN_TARGETS = [
-  ...SOURCES.map(s => ({
-    key:       s.id,
-    regulator: s.regulator,
-    region:    s.region,
-    category:  s.category,
-    monitored: true,
-  })),
-  ...ADDITIONAL_AUTHORITIES.map(a => ({
-    key:       `gap-${a.name}`,
-    regulator: a.name,
-    region:    a.region,
-    category:  'All',
-    monitored: false,
-  })),
-];
+// Scan targets are sourced from the uploaded sheet and bundled at build time.
+// This replaces the previous hardcoded SOURCES + ADDITIONAL_AUTHORITIES list.
+const SCAN_TARGETS = (scanTargetsSheet?.targets || []).map(t => ({
+  key:       `${t.kind || 'target'}-${t.name}`,
+  regulator: t.name,
+  region:    t.region || 'Global',
+  category:  t.category || 'All',
+  monitored: true,
+  mappedUrl: t.mappedUrl || '',
+  banding:   JURISDICTION_BANDINGS?.[t.region] || '',
+})).sort((a, b) => {
+  const ba = BANDING_ORDER[a.banding ?? getBanding(a.region)] ?? 3;
+  const bb = BANDING_ORDER[b.banding ?? getBanding(b.region)] ?? 3;
+  return ba - bb;
+});
 
 const CACHE_KEY   = 'reglib_scan_cache';
 const HISTORY_KEY = 'reglib_scan_history';
@@ -99,6 +99,19 @@ function formatAge(iso) {
   return 'just now';
 }
 
+// Skip index/contents page URLs — we only want actual regulation documents
+const CONTENTS_URL_RE = /\/contents(?:[/?#]|$)/i;
+
+function isContentsUrl(url) {
+  return CONTENTS_URL_RE.test(url || '');
+}
+
+// Extract a 4-digit year from a document name as a fallback published date
+function yearFromName(name) {
+  const m = (name || '').match(/\b(19|20)\d{2}\b/);
+  return m ? m[0] : '';
+}
+
 // ── Map a Gemini result object → finding row ──────────────────────────────────
 function toFinding(doc, idx, monitored = true) {
   const url1 = doc.sourceUrl1 || doc.sourceUrl || doc.url || '';
@@ -117,19 +130,46 @@ function toFinding(doc, idx, monitored = true) {
     sourceUrl2Type: doc.sourceUrl2Type || '',
     authority:    doc.authority    || '',
     jurisdiction: doc.jurisdiction || doc.region || '',
+    publishedDate: doc.publishedDate || yearFromName(doc.requirement || doc.commonName || ''),
+    banding:      getBanding(doc.jurisdiction || doc.region || ''),
     alreadyCovered: SEED_URLS.has(normUrl1),
     monitored,
   };
 }
 
-// ── Local fallback: returns empty when proxy is down ──────────────────────────
+// ── Local fallback: maps bundled webFindings into finding rows ────────────────
 function localFallback() {
-  return [];
+  return webFindings.filter(doc => !isContentsUrl(doc.url)).map((doc, idx) => {
+    const normUrl = (doc.url || '').replace('http://', 'https://');
+    return {
+      id:             `local-${idx}`,
+      reqReport:      'Y',
+      requirement:    doc.commonName    || '',
+      description:    doc.documentType  || '',
+      analystGuide:   '',
+      reference:      doc.commonName    || '',
+      sourceUrl1:     doc.url           || '',
+      sourceUrl1Type: doc.documentType  || 'Source',
+      sourceUrl2:     '',
+      sourceUrl2Type: '',
+      authority:      doc.authority     || '',
+      jurisdiction:   doc.jurisdiction  || doc.region || '',
+      publishedDate:  doc.publishedDate || yearFromName(doc.commonName || ''),
+      banding:        getBanding(doc.jurisdiction || doc.region || ''),
+      alreadyCovered: SEED_URLS.has(normUrl),
+      monitored:      true,
+    };
+  });
 }
 
 // ── Live web scan via proxy → Gemini (falls back to local data if proxy down) ──
 const CONCURRENCY = 3;
 const REQUEST_DELAY_MS = 1500; // stay well under 30 RPM limit
+
+// Rough per-authority estimate (Gemini call(s) + throttling). This is used only
+// for displaying an ETA before we have enough observed progress to compute a
+// real rate.
+const EST_SECONDS_PER_AUTHORITY = 12;
 
 async function runWebScan(onProgress, stopRef) {
   const found    = [];
@@ -137,13 +177,28 @@ async function runWebScan(onProgress, stopRef) {
   const total    = SCAN_TARGETS.length;
   let   liveMode = true;
   let   done     = 0;
+  let   fallbackLoaded = false;
 
   function addDoc(doc, monitored) {
-    const key = (doc.reference || doc.sourceUrl1 || doc.sourceUrl || '').trim().toLowerCase();
+    const url = doc.sourceUrl1 || doc.sourceUrl || doc.url || '';
+    if (isContentsUrl(url)) return;
+    const key = (doc.reference || url).trim().toLowerCase();
     if (!key) return;
     if (seenRefs.has(key)) return;
     seenRefs.add(key);
     found.push(toFinding(doc, found.length, monitored));
+  }
+
+  function loadFallbackNow() {
+    if (fallbackLoaded) return;
+    fallbackLoaded = true;
+    liveMode = false;
+    localFallback().forEach(f => {
+      const key = (f.reference || f.sourceUrl1 || '').trim().toLowerCase();
+      if (!key || seenRefs.has(key)) return;
+      seenRefs.add(key);
+      found.push(f);
+    });
   }
 
   async function processTarget(target) {
@@ -154,14 +209,16 @@ async function runWebScan(onProgress, stopRef) {
         query:    target.regulator,
         region:   target.region,
         category: target.category,
+        targetUrls: target.mappedUrl ? [target.mappedUrl] : [],
       });
       results.forEach(doc => addDoc(doc, target.monitored));
     } catch (err) {
-      liveMode = false;
+      // Load fallback immediately on first proxy failure so table populates now
+      loadFallbackNow();
       console.warn(`Proxy unavailable for ${target.regulator}:`, err.message);
     }
     done++;
-    onProgress({ done, total, source: target.regulator, found: found.length, liveMode });
+    onProgress({ done, total, source: target.regulator, found: found.length, liveMode, snapshot: [...found] });
   }
 
   // Run with limited concurrency
@@ -259,11 +316,12 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
       <table className="doc-table">
         <thead>
           <tr>
-            <th>Req</th>
             <th>Category</th>
             <th>Description</th>
             <th>Reference</th>
+            <th>Jurisdiction</th>
             <th>Links</th>
+            <th>Banking Band</th>
             {showCoveredBadge && <th>Status</th>}
           </tr>
         </thead>
@@ -273,10 +331,10 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
               key={row.id}
               className={`${i % 2 === 0 ? 'row-even' : 'row-odd'}${row.alreadyCovered ? ' row-covered' : ''}`}
             >
-              <td><span className="leg-badge leg-badge--primary">{row.reqReport || 'Y'}</span></td>
               <td className="td-name" title={row.requirement}>{row.requirement}</td>
               <td className="td-desc" title={row.description}>{row.description}</td>
               <td className="td-ref" title={row.reference}>{row.reference}</td>
+              <td className="td-jurisdiction">{row.jurisdiction || '—'}</td>
               <td className="td-url">
                 {row.sourceUrl1 && (
                   <a href={row.sourceUrl1} target="_blank" rel="noreferrer noopener" className="open-btn open-btn--labeled" title={row.sourceUrl1}>
@@ -297,6 +355,14 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
                   </a>
                 )}
               </td>
+              <td>
+                {(() => {
+                  const s = BANDING_STYLE[row.banding] || BANDING_STYLE[''];
+                  return row.banding
+                    ? <span className="banding-badge" style={{ background: s.bg, color: s.color }}>{s.label}</span>
+                    : <span className="banding-badge banding-badge--unrated">—</span>;
+                })()}
+              </td>
               {showCoveredBadge && (
                 <td>
                   {row.alreadyCovered
@@ -312,19 +378,19 @@ function DocTable({ rows, emptyMsg, showCoveredBadge = false }) {
   );
 }
 
-// ── History entry (collapsible) ───────────────────────────────────────────────
+// ── History entry ─────────────────────────────────────────────────────────────
 function HistoryEntry({ entry, defaultOpen = false }) {
   const [open, setOpen] = useState(defaultOpen);
   const newFindings = entry.findings.filter(r => !r.alreadyCovered);
+
   return (
     <div className="rp-history-entry">
       <button className="rp-history-row" onClick={() => setOpen(o => !o)}>
         <span className="rp-history-date">
-          {new Date(entry.scannedAt).toLocaleString()}
+          {new Date(entry.scannedAt).toLocaleDateString()}
         </span>
         <span className="rp-history-meta">
           {entry.newCount} new · {entry.total - entry.newCount} covered
-          <span className="rp-mode-badge rp-mode-badge--sm rp-mode-badge--live">● Live</span>
         </span>
         <span className="rp-history-chevron">{open ? '▲' : '▼'}</span>
       </button>
@@ -363,20 +429,20 @@ function GapFindingsTable({ rows }) {
       <table className="gap-findings-table">
         <thead>
           <tr>
-            <th>Req</th>
             <th>Requirement</th>
             <th>Description</th>
             <th>Reference</th>
+            <th>Jurisdiction</th>
             <th>Links</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row, i) => (
             <tr key={row.id || i} className={i % 2 === 0 ? 'row-even' : 'row-odd'}>
-              <td><span className="leg-badge leg-badge--primary">{row.reqReport || 'Y'}</span></td>
               <td className="td-name" title={row.requirement}>{row.requirement}</td>
               <td className="td-desc" title={row.description}>{row.description}</td>
               <td className="td-ref" title={row.reference}>{row.reference}</td>
+              <td className="td-jurisdiction">{row.jurisdiction || '—'}</td>
               <td className="td-url">
                 {row.sourceUrl1 && (
                   <a href={row.sourceUrl1} target="_blank" rel="noreferrer noopener" className="open-btn open-btn--labeled" title={row.sourceUrl1}>
@@ -481,22 +547,56 @@ function CoverageGapsPanel({ gapSearch, setGapSearch, gapByAuthority, filteredGa
 // ═════════════════════════════════════════════════════════════════════════════
 export function ReportingPage() {
 
-  const cached = loadCache();
-
-  const [phase,     setPhase]     = useState(cached ? 'done' : 'idle');
+  const [phase,     setPhase]     = useState('idle');
   const [progress,  setProgress]  = useState({ done: 0, total: SCAN_TARGETS.length, source: '', found: 0 });
-  const [findings,  setFindings]  = useState(cached?.findings ?? []);
+  const [findings,  setFindings]  = useState([]);
   const [notify,      setNotify]      = useState(true);
   const [toast,       setToast]       = useState(null);
-  const [liveMode,    setLiveMode]    = useState(cached?.liveMode ?? true);
-  const [scannedAt,   setScannedAt]   = useState(cached?.scannedAt ?? null);
+  const [liveMode,    setLiveMode]    = useState(true);
+  const [scannedAt,   setScannedAt]   = useState(null);
   const [showHistory, setShowHistory] = useState(false);
   const [history,     setHistory]     = useState(() => loadHistory());
 
-  const [gapSearch, setGapSearch] = useState('');
+  const [apiKeyInput, setApiKeyInput] = useState('');
+  const [apiKeySaved, setApiKeySaved] = useState(false);
+  const [showApiKey,  setShowApiKey]  = useState(false);
+
+  const [scanStartTime,  setScanStartTime]  = useState(null);
+  const [bandingFilter,  setBandingFilter]  = useState('All');
+  const [exporting,      setExporting]      = useState(false);
 
   const stopRef = useRef(false);
   const { notify: pushNotify } = useNotifications();
+
+  // Load saved Gemini API key (shared with popup)
+  useEffect(() => {
+    try {
+      const storage = globalThis?.chrome?.storage?.local;
+      if (!storage?.get) return;
+      storage.get(['geminiApiKey'], (data) => {
+        if (data?.geminiApiKey) setApiKeyInput(String(data.geminiApiKey));
+      });
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  function handleSaveApiKey() {
+    try {
+      const storage = globalThis?.chrome?.storage?.local;
+      if (!storage?.set) {
+        showToast('Could not save key (storage unavailable).', 'warn');
+        return;
+      }
+      storage.set({ geminiApiKey: apiKeyInput }, () => {
+        setApiKeySaved(true);
+        setTimeout(() => setApiKeySaved(false), 2000);
+        showToast('Gemini API key saved.', 'success');
+      });
+    } catch {
+      showToast('Could not save key.', 'warn');
+    }
+  }
 
   // Keep scannedAt display fresh (re-render every minute)
   useEffect(() => {
@@ -516,16 +616,20 @@ export function ReportingPage() {
       stopRef.current = false;
       setPhase('scanning');
       setFindings([]);
+      setScanStartTime(Date.now());
       setProgress({ done: 0, total: SCAN_TARGETS.length, source: '', found: 0 });
 
-      const { found: results, liveMode: live } = await runWebScan(p => setProgress({ ...p }), stopRef);
+      const { found: results, liveMode: live } = await runWebScan(p => {
+        setProgress({ ...p });
+        if (p.snapshot) setFindings(p.snapshot);
+      }, stopRef);
 
       setFindings(results);
       setLiveMode(live);
       setPhase('done');
       const now = new Date().toISOString();
       setScannedAt(now);
-      saveCache(results, live);
+      if (live) saveCache(results, live);
       appendHistory(results, live, now);
       setHistory(loadHistory());
 
@@ -542,6 +646,21 @@ export function ReportingPage() {
 
   function handleStop() { stopRef.current = true; }
 
+  async function handleExportTemplate() {
+    if (exporting || findings.length === 0) return;
+    setExporting(true);
+    try {
+      const rows = toTemplateRows(findings);
+      const date = new Date().toISOString().slice(0, 10);
+      await downloadTemplateXLSX(rows, `reg-requirements-${date}.xlsx`);
+      showToast('Template exported.', 'success');
+    } catch (err) {
+      showToast('Export failed: ' + err.message, 'warn');
+    } finally {
+      setExporting(false);
+    }
+  }
+
   function handleClearCache() {
     clearCache();
     setFindings([]);
@@ -550,32 +669,37 @@ export function ReportingPage() {
     showToast('Scan cache cleared.', 'success');
   }
 
-  // ── Coverage Gaps helpers ─────────────────────────────────────────────────
-  const gapFindings = findings.filter(r => r.monitored === false);
+  // ── ETA calculation ───────────────────────────────────────────────────────
+  function getETA() {
+    if (!scanStartTime) return null;
 
-  // Group gap findings by authority name
-  const gapByAuthority = gapFindings.reduce((acc, r) => {
-    const key = r.authority || 'Unknown';
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(r);
-    return acc;
-  }, {});
+    // If we're still at 0, show a conservative estimate instead of nothing.
+    if (progress.done === 0) {
+      const totalSecs = Math.ceil((progress.total * EST_SECONDS_PER_AUTHORITY) / CONCURRENCY);
+      const mins = Math.floor(totalSecs / 60);
+      const secs = totalSecs % 60;
+      return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+    }
 
-  function getFilteredGaps() {
-    const q = gapSearch.trim().toLowerCase();
-    const scannedNames = new Set(Object.keys(gapByAuthority));
-    // Merge: authorities with results + all additional authorities (for display)
-    const all = ADDITIONAL_AUTHORITIES;
-    if (!q) return all;
-    return all.filter(a =>
-      a.name.toLowerCase().includes(q) || a.region.toLowerCase().includes(q)
-    );
+    const elapsed   = (Date.now() - scanStartTime) / 1000;
+    const rate      = progress.done / elapsed;
+    const remaining = Math.ceil((progress.total - progress.done) / rate);
+    if (!isFinite(remaining) || remaining <= 0) return null;
+    const mins = Math.floor(remaining / 60);
+    const secs = remaining % 60;
+    return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
   }
 
   const isScanning  = phase === 'scanning';
   const isDone      = phase === 'done';
   const pct         = Math.round((progress.done / progress.total) * 100);
   const newFindings = findings.filter(r => !r.alreadyCovered);
+
+  const filteredFindings = bandingFilter === 'All'
+    ? findings
+    : bandingFilter === 'Unrated'
+      ? findings.filter(r => !r.banding)
+      : findings.filter(r => r.banding === bandingFilter);
 
   const statusText = isScanning
     ? `${progress.source} (${pct}%)`
@@ -601,16 +725,34 @@ export function ReportingPage() {
         <div className="rp-header-content">
         <div className="rp-brand">VIXIO REGULATORY INTELLIGENCE</div>
         <h1 className="rp-title">Compliance Requirements Scanner</h1>
-        <p className="rp-subtitle">AI-powered scan surfacing binding regulatory obligations with legal references and source links.</p>
+        <p className="rp-subtitle">AI-powered scan, surfacing regulatory documents.</p>
         <div className="rp-header-actions">
           <button className="rp-hbtn" onClick={handleRun} disabled={isScanning}>
-            {isScanning ? 'Scanning…' : 'Run Requirements Scan'}
+            {isScanning ? 'Scanning…' : 'Run Scan'}
+          </button>
+          <button className="rp-hbtn" onClick={() => setShowApiKey(v => !v)}>
+            API Key
           </button>
           <button className="rp-hbtn" onClick={() => setShowHistory(h => !h)}>
             History {history.length > 0 && `(${history.length})`}
           </button>
           <span className="rp-mode-badge rp-mode-badge--live">● Live</span>
         </div>
+
+        {showApiKey && (
+          <div className="rp-api-key-wrap">
+            <input
+              className="rp-api-key-input"
+              type="password"
+              placeholder="Gemini API key (AIza...)"
+              value={apiKeyInput}
+              onChange={e => setApiKeyInput(e.target.value)}
+            />
+            <button className="rp-api-key-save" onClick={handleSaveApiKey}>
+              {apiKeySaved ? '✓ Saved' : 'Save'}
+            </button>
+          </div>
+        )}
         </div>
       </header>
 
@@ -643,7 +785,9 @@ export function ReportingPage() {
               <div className="rp-progress-label">
                 <span><strong title={progress.source}>{progress.source}</strong></span>
                 <span className="rp-progress-right">
-                  {progress.found} found
+                  {progress.done} / {progress.total} authorities
+                  {getETA() && <span className="rp-eta"> · ~{getETA()} remaining</span>}
+                  &nbsp;· {progress.found} found
                   <button className="rp-stop" onClick={handleStop}>Stop</button>
                 </span>
               </div>
@@ -663,30 +807,58 @@ export function ReportingPage() {
           {/* Findings */}
           <div className="rp-panel">
             <div className="rp-panel-head">
-              <div className="rp-panel-title">Compliance Requirements Found</div>
+              <div className="rp-panel-title">Banking Requirements Found</div>
               <div className="rp-panel-sub">
                 {isScanning
-                  ? `Scanning all authorities…`
+                  ? `${findings.length} found so far — scanning all authorities…`
                   : isDone
                     ? `${findings.length} requirements · ${newFindings.length} not yet in library`
                     : 'Run a scan to surface compliance requirements with legal citations.'}
               </div>
+              {(findings.length > 0) && (
+                <div className="banding-filter-row">
+                  <span className="banding-filter-label">Banking Band:</span>
+                  {['All', '1. High', '2. Medium', '3. Low', 'Unrated'].map(b => {
+                    const style = b === 'All' ? null : b === 'Unrated' ? BANDING_STYLE[''] : BANDING_STYLE[b];
+                    const label = b === 'All' ? 'All' : b === 'Unrated' ? 'Unrated' : BANDING_STYLE[b].label;
+                    return (
+                      <button
+                        key={b}
+                        className={`banding-chip ${bandingFilter === b ? 'banding-chip--active' : ''}`}
+                        style={bandingFilter === b && style ? { background: style.bg, color: style.color, borderColor: style.color } : {}}
+                        onClick={() => setBandingFilter(b)}
+                      >
+                        {label}
+                        <span className="banding-chip-count">
+                          {b === 'All' ? findings.length
+                            : b === 'Unrated' ? findings.filter(r => !r.banding).length
+                            : findings.filter(r => r.banding === b).length}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
+            {findings.length > 0 && !isScanning && (
+              <div style={{ display: 'flex', gap: '8px', padding: '8px 16px 0' }}>
+                <button
+                  className="rp-btn rp-btn--green"
+                  onClick={handleExportTemplate}
+                  disabled={exporting}
+                  title="Export findings to FS Requirements template CSV with AI classification and accuracy scoring"
+                >
+                  {exporting ? 'Exporting…' : 'Export to Template'}
+                </button>
+              </div>
+            )}
             <DocTable
-              rows={findings}
+              rows={filteredFindings}
               emptyMsg={isScanning ? 'Analysing regulatory obligations…' : 'Run a scan to surface compliance requirements.'}
               showCoveredBadge
             />
           </div>
 
-          {/* Coverage Gaps */}
-          <CoverageGapsPanel
-            gapSearch={gapSearch}
-            setGapSearch={setGapSearch}
-            gapByAuthority={gapByAuthority}
-            filteredGaps={getFilteredGaps()}
-            isScanning={isScanning}
-          />
 
       </BackgroundGradientGlow>
 
@@ -726,6 +898,7 @@ export function ReportingPage() {
           </div>
         </div>
       )}
+
     </div>
   );
 }

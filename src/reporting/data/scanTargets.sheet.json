@@ -1,0 +1,3591 @@
+{
+  "sheet": "scan-targets",
+  "generatedAt": "2026-04-13T17:06:46.020Z",
+  "count": 512,
+  "targets": [
+    {
+      "name": "Abu Dhabi Global Market",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Abu Dhabi Office of Data Protection",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Access to Cash Review",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "ACPR",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Insurance",
+      "mappedUrl": "https://acpr.banque-france.fr/en/publications-and-statistics"
+    },
+    {
+      "name": "ADGM FSRA",
+      "kind": "source",
+      "region": "ME/AF",
+      "category": "Securities",
+      "mappedUrl": "https://www.adgm.com/fsra/regulations/rulebooks"
+    },
+    {
+      "name": "Administrative Council for Economic Defense - Brazil",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Advertising Regulatory Board",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Advertising Standards Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Advertising Standards Authority for Ireland",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Advertising Standards Authority of Singapore",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Advertising Standards Council of India",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "AFM",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Securities",
+      "mappedUrl": "https://www.afm.nl/en/professionals/onderwerpen"
+    },
+    {
+      "name": "Agence Française Anticorruption",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Agencia Espanola Proteccion Datos",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Agency Against Corruption",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Agency for Digital Italy",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Agency for Personal Data Protection",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Agency for Protection of Competition",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Alabama",
+      "kind": "jurisdiction",
+      "region": "Alabama",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Alaska",
+      "kind": "jurisdiction",
+      "region": "Alaska",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Albania",
+      "kind": "jurisdiction",
+      "region": "Albania",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Alberta",
+      "kind": "jurisdiction",
+      "region": "Alberta",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "American Bankers Association",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "AMF",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Securities",
+      "mappedUrl": "https://www.amf-france.org/en/regulation/general-regulation-and-instructions"
+    },
+    {
+      "name": "Angola Data Protection Agency",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Angola Financial Intelligence Unit",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Anti-Money Laundering and Counter-Terrorism Financing Office",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Anti-Money Laundering Authority (AMLA) - EU",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Anti-Money Laundering Division (Executive Yuan)",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Antimonopoly Office of the Slovak Republic",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "APRA",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Prudential",
+      "mappedUrl": "https://www.apra.gov.au/industries"
+    },
+    {
+      "name": "Argentina",
+      "kind": "jurisdiction",
+      "region": "Argentina",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Argentina Ministry of Economy",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Argentine Bankers Association",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Arizona",
+      "kind": "jurisdiction",
+      "region": "Arizona",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Arkansas",
+      "kind": "jurisdiction",
+      "region": "Arkansas",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Armenia",
+      "kind": "jurisdiction",
+      "region": "Armenia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Armenia Personal Data Protection Agency",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Armenia State Commission for the Protection of Economic Competition",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "ASEAN",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Asia/Pacific Group on Money Laundering (APG)",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Asian Financial Cooperation Association",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "ASIC",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Securities",
+      "mappedUrl": "https://asic.gov.au/regulatory-resources/find-a-document/regulatory-guides/"
+    },
+    {
+      "name": "Association of Banks in Cambodia",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Association of Banks in Fiji",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Association of Banks of Singapore",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Association of German Banks",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Association of Serbian Banks",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australia",
+      "kind": "jurisdiction",
+      "region": "Australia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Banking Association",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Communications and Media Authority",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Competition and Consumer Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Cyber Security Centre",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Department of Home Affairs",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Finance Industry Association Limited",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Financial Complaints Authority",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Human Rights Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Payments Council",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Payments Network",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Prudential Regulation Authority",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Securities and Investments Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Transaction Reports and Analysis Centre",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Australian Treasury",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Austria",
+      "kind": "jurisdiction",
+      "region": "Austria",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Austrian Data Protection Council",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Austrian Federal Ministry of Finance",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Authority for Anti-Money Laundering and Countering the Financing of Terrorism",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Autorité de Contrôle Prudentiel et de Résolution",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Autorité de la concurrence",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Autorité des Marchés Financiers (AMF)",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Azerbaijan",
+      "kind": "jurisdiction",
+      "region": "Azerbaijan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Azerbaijan Competition Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "BaFin",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.bafin.de/EN/Aufsicht/BankenFinanzdienstleister/Regularien/regularien_node.html"
+    },
+    {
+      "name": "Bahrain",
+      "kind": "jurisdiction",
+      "region": "Bahrain",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bahrain Government",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Banco de España",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Banco de la República Colombia",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Banco de México",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Banco de Portugal",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bangko Sentral ng Pilipinas",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bangladesh",
+      "kind": "jurisdiction",
+      "region": "Bangladesh",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bangladesh Bank",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bangladesh Financial Intelligence Unit",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bangladesh Securities and Exchange Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank for International Settlements",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank Indonesia",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank Negara Malaysia",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Albania",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Canada",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of England",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Ghana",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Israel",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Italy",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Japan",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Korea",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Mauritius",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bank of Thailand",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Banking Association South Africa",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Banque de France",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Basel Committee on Banking Supervision",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "BCBS / BIS",
+      "kind": "source",
+      "region": "Global",
+      "category": "Prudential",
+      "mappedUrl": "https://www.bis.org/bcbs/publ/index.htm"
+    },
+    {
+      "name": "BCBS / BIS",
+      "kind": "source",
+      "region": "Global",
+      "category": "Banking",
+      "mappedUrl": "https://www.bis.org/publ/work.htm"
+    },
+    {
+      "name": "BCBS / BIS",
+      "kind": "source",
+      "region": "Global",
+      "category": "Prudential",
+      "mappedUrl": "https://www.bis.org/bcbs/basel3.htm"
+    },
+    {
+      "name": "Belarus",
+      "kind": "jurisdiction",
+      "region": "Belarus",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Belgian Competition Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Belgian Data Protection Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Belgian Financial Intelligence Processing Unit",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Belgium",
+      "kind": "jurisdiction",
+      "region": "Belgium",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bermuda Monetary Authority",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Board of Governors of the Federal Reserve System",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Botswana",
+      "kind": "jurisdiction",
+      "region": "Botswana",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Brazil",
+      "kind": "jurisdiction",
+      "region": "Brazil",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Brazil Superintendence of Private Insurance",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Brazilian Securities and Exchange Commission",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "British Columbia Financial Services Authority",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "British Columbia Securities Commission",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bulgaria",
+      "kind": "jurisdiction",
+      "region": "Bulgaria",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bulgarian Commission for Personal Data Protection",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bulgarian Financial Supervision Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bulgarian National Bank",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Bundeskartellamt",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "BVIFSC",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Securities",
+      "mappedUrl": "https://www.bvifsc.vg/regulation/laws-and-regulations"
+    },
+    {
+      "name": "California",
+      "kind": "jurisdiction",
+      "region": "California",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Cambodia",
+      "kind": "jurisdiction",
+      "region": "Cambodia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Canada",
+      "kind": "jurisdiction",
+      "region": "Canada",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Cayman Islands Monetary Authority",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "CBI",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.centralbank.ie/regulation/industry-market-sectors"
+    },
+    {
+      "name": "Central Bank of Armenia",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Bahrain",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Bangladesh",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Brazil",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Chile",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Colombia",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Cyprus",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Egypt",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Ireland",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Jordan",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Kenya",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Luxembourg",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Malta",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Montenegro",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Nigeria",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Oman",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Sri Lanka",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Tanzania",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of the Republic of Turkey",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of the UAE",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Uruguay",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Central Bank of Uzbekistan",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "CFPB",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Consumer Credit",
+      "mappedUrl": "https://www.consumerfinance.gov/rules-policy/final-rules/"
+    },
+    {
+      "name": "CFTC",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Derivatives",
+      "mappedUrl": "https://www.cftc.gov/LawRegulation/FederalRegister/finalrules/index.htm"
+    },
+    {
+      "name": "Chile",
+      "kind": "jurisdiction",
+      "region": "Chile",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Chilean Financial Market Commission (CMF)",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "China",
+      "kind": "jurisdiction",
+      "region": "China",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "China Banking and Insurance Regulatory Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "China Securities Regulatory Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "China State Administration for Market Regulation",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "CIMA",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Banking",
+      "mappedUrl": "https://www.cima.ky/regulations-and-legislation/"
+    },
+    {
+      "name": "Colombia",
+      "kind": "jurisdiction",
+      "region": "Colombia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Colombian Financial Information and Analysis Unit",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Colorado",
+      "kind": "jurisdiction",
+      "region": "Colorado",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Commodity Futures Trading Commission",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Competition and Consumer Commission of Singapore",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Competition Authority of Kenya",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Competition Bureau Canada",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Competition Commission of India",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Competition Commission of South Africa",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Connecticut",
+      "kind": "jurisdiction",
+      "region": "Connecticut",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "CONSOB",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Securities",
+      "mappedUrl": "https://www.consob.it/web/consob-and-its-activities/regulations"
+    },
+    {
+      "name": "Consumer Financial Protection Bureau",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Costa Rica",
+      "kind": "jurisdiction",
+      "region": "Costa Rica",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Croatia",
+      "kind": "jurisdiction",
+      "region": "Croatia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Croatian Financial Services Supervision Agency",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Croatian National Bank",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Cyprus",
+      "kind": "jurisdiction",
+      "region": "Cyprus",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Cyprus Commission for the Protection of Competition",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Cyprus Securities and Exchange Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "CySEC",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Securities",
+      "mappedUrl": "https://www.cysec.gov.cy/en-GB/legislation/"
+    },
+    {
+      "name": "Czech National Bank",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Czech Republic",
+      "kind": "jurisdiction",
+      "region": "Czech Republic",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Czechia",
+      "kind": "jurisdiction",
+      "region": "Czechia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Danish Data Protection Agency",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Danish Financial Supervisory Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Delaware",
+      "kind": "jurisdiction",
+      "region": "Delaware",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Denmark",
+      "kind": "jurisdiction",
+      "region": "Denmark",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "DFSA",
+      "kind": "source",
+      "region": "ME/AF",
+      "category": "Securities",
+      "mappedUrl": "https://www.dfsa.ae/regulation/rulebooks"
+    },
+    {
+      "name": "DOJ",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Anti-Bribery",
+      "mappedUrl": "https://www.justice.gov/criminal-fraud/foreign-corrupt-practices-act"
+    },
+    {
+      "name": "Dominican Republic",
+      "kind": "jurisdiction",
+      "region": "Dominican Republic",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Dubai Financial Services Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Dubai Virtual Assets Regulatory Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Dutch Authority for the Financial Markets",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Dutch Central Bank",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Dutch Data Protection Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Eastern Caribbean Central Bank",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "EBA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.eba.europa.eu/regulation-and-policy/single-rulebook"
+    },
+    {
+      "name": "EBA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.eba.europa.eu/regulation-and-policy/guidelines-and-recommendations"
+    },
+    {
+      "name": "ECB",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Prudential",
+      "mappedUrl": "https://www.bankingsupervision.europa.eu/legalframework/supervisoryregulations/html/index.en.html"
+    },
+    {
+      "name": "EDPB",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Data Protection",
+      "mappedUrl": "https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines_en"
+    },
+    {
+      "name": "Egypt",
+      "kind": "jurisdiction",
+      "region": "Egypt",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Egyptian Anti-Money Laundering Unit",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Egyptian Competition Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "EIOPA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Insurance",
+      "mappedUrl": "https://www.eiopa.europa.eu/publications_en"
+    },
+    {
+      "name": "EIOPA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Insurance",
+      "mappedUrl": "https://www.eiopa.europa.eu/guidance_en"
+    },
+    {
+      "name": "El Salvador Central Reserve Bank",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Electronic Money Association",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "ESMA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Securities",
+      "mappedUrl": "https://www.esma.europa.eu/rules-databases-library/esmas-technical-standards-and-guidelines"
+    },
+    {
+      "name": "ESMA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Securities",
+      "mappedUrl": "https://www.esma.europa.eu/convergence/questions-and-answers"
+    },
+    {
+      "name": "ESMA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Securities",
+      "mappedUrl": "https://www.esma.europa.eu/rules-databases-library/mifid-ii-and-mifir"
+    },
+    {
+      "name": "Estonia",
+      "kind": "jurisdiction",
+      "region": "Estonia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Estonian Financial Supervision Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "EU",
+      "kind": "jurisdiction",
+      "region": "EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "EUR-Lex",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://eur-lex.europa.eu/search.html?qid=&text=financial+services+regulation&scope=EURLEX&type=quick&lang=en"
+    },
+    {
+      "name": "EUR-Lex",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Data Protection",
+      "mappedUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679"
+    },
+    {
+      "name": "EUR-Lex",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Securities",
+      "mappedUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0065"
+    },
+    {
+      "name": "EUR-Lex",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Insurance",
+      "mappedUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32009L0138"
+    },
+    {
+      "name": "European Banking Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Central Bank",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Data Protection Board",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Data Protection Supervisor",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Insurance and Occupational Pensions Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Parliament",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Payments Council",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Securities and Markets Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Systemic Risk Board",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "European Union",
+      "kind": "jurisdiction",
+      "region": "European Union",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Europol",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "FATF",
+      "kind": "source",
+      "region": "Global",
+      "category": "AML / CFT",
+      "mappedUrl": "https://www.fatf-gafi.org/en/publications/Fatfrecommendations.html"
+    },
+    {
+      "name": "FATF",
+      "kind": "source",
+      "region": "Global",
+      "category": "AML / CFT",
+      "mappedUrl": "https://www.fatf-gafi.org/en/publications/Mutualevaluations.html"
+    },
+    {
+      "name": "FATF",
+      "kind": "source",
+      "region": "Global",
+      "category": "AML / CFT",
+      "mappedUrl": "https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Risk-based-approach-guidance-for-the-banking-sector.html"
+    },
+    {
+      "name": "FCA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.fca.org.uk/publications/policy-statements"
+    },
+    {
+      "name": "FCA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.fca.org.uk/publications/consultation-papers"
+    },
+    {
+      "name": "FCA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.fca.org.uk/publications/final-notices"
+    },
+    {
+      "name": "FDIC",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Banking",
+      "mappedUrl": "https://www.fdic.gov/regulations/laws/rules/"
+    },
+    {
+      "name": "Federal",
+      "kind": "jurisdiction",
+      "region": "Federal",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Federal Deposit Insurance Corporation",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Federal Financial Institutions Examination Council",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Federal Reserve",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Banking",
+      "mappedUrl": "https://www.federalreserve.gov/apps/foia/regulationsearch.aspx"
+    },
+    {
+      "name": "Federal Reserve",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Banking",
+      "mappedUrl": "https://www.federalreserve.gov/supervisionreg/srletters/srletters.htm"
+    },
+    {
+      "name": "Federal Reserve",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Federal Trade Commission",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Finance Denmark",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Finance Finland",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Finance Norway",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Action Task Force",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Crimes Enforcement Network",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Industry Regulatory Authority",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Intelligence Centre - South Africa",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Markets Authority - New Zealand",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Reporting Council",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Sector Conduct Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Services Agency - Japan",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Services and Markets Authority - Belgium",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Services Commission - South Korea",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Stability Board",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Stability Oversight Council",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Supervisory Authority - Finland",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Supervisory Authority - Romania",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Supervisory Authority - Sweden",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Financial Transactions and Reports Analysis Centre of Canada",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Finland",
+      "kind": "jurisdiction",
+      "region": "Finland",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "FINMA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.finma.ch/en/regulation/regulations/"
+    },
+    {
+      "name": "FINMA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.finma.ch/en/regulation/circulars/"
+    },
+    {
+      "name": "Finnish Competition and Consumer Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "FINRA",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Securities",
+      "mappedUrl": "https://www.finra.org/rules-guidance/rulebooks/finra-rules"
+    },
+    {
+      "name": "FINRA",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Securities",
+      "mappedUrl": "https://www.finra.org/rules-guidance/notices"
+    },
+    {
+      "name": "Florida",
+      "kind": "jurisdiction",
+      "region": "Florida",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "France",
+      "kind": "jurisdiction",
+      "region": "France",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "French Banking Federation",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "French Competition Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "FSA Japan",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Banking",
+      "mappedUrl": "https://www.fsa.go.jp/en/laws_regulations/"
+    },
+    {
+      "name": "FSA Japan",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Banking",
+      "mappedUrl": "https://www.fsa.go.jp/en/refer/guideline/"
+    },
+    {
+      "name": "FSB",
+      "kind": "source",
+      "region": "Global",
+      "category": "Banking",
+      "mappedUrl": "https://www.fsb.org/publications/"
+    },
+    {
+      "name": "FSCA",
+      "kind": "source",
+      "region": "ME/AF",
+      "category": "Securities",
+      "mappedUrl": "https://www.fsca.co.za/Regulatory%20Frameworks/Pages/Regulatory-Frameworks.aspx"
+    },
+    {
+      "name": "G20",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Georgia",
+      "kind": "jurisdiction",
+      "region": "Georgia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "German Federal Financial Supervisory Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Germany",
+      "kind": "jurisdiction",
+      "region": "Germany",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Ghana",
+      "kind": "jurisdiction",
+      "region": "Ghana",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Gibraltar Financial Services Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Greece",
+      "kind": "jurisdiction",
+      "region": "Greece",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Greek Anti-Money Laundering Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hawaii",
+      "kind": "jurisdiction",
+      "region": "Hawaii",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hellenic Capital Market Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hellenic Data Protection Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "HKMA",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Banking",
+      "mappedUrl": "https://www.hkma.gov.hk/eng/regulatory-resources/regulatory-guides/supervisory-policy-manual/"
+    },
+    {
+      "name": "HM Revenue & Customs",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "HM Treasury",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Banking",
+      "mappedUrl": "https://www.legislation.gov.uk/uksi?results-count=20&sort=issued&title=financial"
+    },
+    {
+      "name": "HM Treasury",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hong Kong",
+      "kind": "jurisdiction",
+      "region": "Hong Kong",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hong Kong Competition Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hong Kong Monetary Authority",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hungarian Competition Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hungarian National Authority for Data Protection",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Hungary",
+      "kind": "jurisdiction",
+      "region": "Hungary",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "IAIS",
+      "kind": "source",
+      "region": "Global",
+      "category": "Insurance",
+      "mappedUrl": "https://www.iaisweb.org/publications/"
+    },
+    {
+      "name": "IAIS",
+      "kind": "source",
+      "region": "Global",
+      "category": "Insurance",
+      "mappedUrl": "https://www.iaisweb.org/consultations/"
+    },
+    {
+      "name": "Iceland",
+      "kind": "jurisdiction",
+      "region": "Iceland",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Iceland Financial Supervision Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "ICO",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Data Protection",
+      "mappedUrl": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/"
+    },
+    {
+      "name": "Idaho",
+      "kind": "jurisdiction",
+      "region": "Idaho",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "IFRS Foundation",
+      "kind": "source",
+      "region": "Global",
+      "category": "ESG / Disclosure",
+      "mappedUrl": "https://www.ifrs.org/issued-standards/list-of-standards/"
+    },
+    {
+      "name": "IFRS Foundation",
+      "kind": "source",
+      "region": "Global",
+      "category": "ESG / Disclosure",
+      "mappedUrl": "https://www.ifrs.org/groups/international-sustainability-standards-board/"
+    },
+    {
+      "name": "Illinois",
+      "kind": "jurisdiction",
+      "region": "Illinois",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "IMF",
+      "kind": "source",
+      "region": "Global",
+      "category": "Prudential",
+      "mappedUrl": "https://www.imf.org/en/Publications/GFSR"
+    },
+    {
+      "name": "India",
+      "kind": "jurisdiction",
+      "region": "India",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Indiana",
+      "kind": "jurisdiction",
+      "region": "Indiana",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Indonesia",
+      "kind": "jurisdiction",
+      "region": "Indonesia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Indonesian Financial Services Authority",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Indonesian Financial Transaction Reports and Analysis Center",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Information Commissioner's Office",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Insurance Regulatory and Development Authority",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "International Finance Corporation",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "International Monetary Fund",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "International Organization of Securities Commissions",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "IOSCO",
+      "kind": "source",
+      "region": "Global",
+      "category": "Securities",
+      "mappedUrl": "https://www.iosco.org/library/pubdocs/"
+    },
+    {
+      "name": "Iowa",
+      "kind": "jurisdiction",
+      "region": "Iowa",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Ireland",
+      "kind": "jurisdiction",
+      "region": "Ireland",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Irish Competition and Consumer Protection Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Irish Data Protection Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Irish Department of Finance",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Isle of Man Financial Services Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Israel",
+      "kind": "jurisdiction",
+      "region": "Israel",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Israel Competition Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Israel Money Laundering and Terror Financing Prohibition Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Israel Privacy Protection Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Israel Securities Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Italian Competition Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Italian Data Protection Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Italian National Commission for Companies and the Stock Exchange",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Italy",
+      "kind": "jurisdiction",
+      "region": "Italy",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Japan",
+      "kind": "jurisdiction",
+      "region": "Japan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Japan Fair Trade Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Japan Financial Intelligence Unit",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Japan Securities Dealers Association",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Japanese Bankers Association",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Joint Money Laundering Steering Group",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Jordan",
+      "kind": "jurisdiction",
+      "region": "Jordan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Jordan Securities Commission",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kansas",
+      "kind": "jurisdiction",
+      "region": "Kansas",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kazakhstan",
+      "kind": "jurisdiction",
+      "region": "Kazakhstan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kazakhstan Agency for Regulation and Development of Financial Market",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kentucky",
+      "kind": "jurisdiction",
+      "region": "Kentucky",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kenya",
+      "kind": "jurisdiction",
+      "region": "Kenya",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kenya Bankers Association",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kenya Office of the Data Protection Commissioner",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Korea",
+      "kind": "jurisdiction",
+      "region": "Korea",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kuwait",
+      "kind": "jurisdiction",
+      "region": "Kuwait",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Kyrgyzstan",
+      "kind": "jurisdiction",
+      "region": "Kyrgyzstan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Labuan Financial Services Authority",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Laos",
+      "kind": "jurisdiction",
+      "region": "Laos",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Latvia",
+      "kind": "jurisdiction",
+      "region": "Latvia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Latvian Finance and Capital Market Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Lebanon",
+      "kind": "jurisdiction",
+      "region": "Lebanon",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Liechtenstein",
+      "kind": "jurisdiction",
+      "region": "Liechtenstein",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Lithuania",
+      "kind": "jurisdiction",
+      "region": "Lithuania",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Lithuanian Government",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Louisiana",
+      "kind": "jurisdiction",
+      "region": "Louisiana",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Luxembourg",
+      "kind": "jurisdiction",
+      "region": "Luxembourg",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Luxembourg Government",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Magyar Nemzeti Bank",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Maine",
+      "kind": "jurisdiction",
+      "region": "Maine",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Malaysia",
+      "kind": "jurisdiction",
+      "region": "Malaysia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Malaysia Securities Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Maldives Monetary Authority",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Malta",
+      "kind": "jurisdiction",
+      "region": "Malta",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Malta Financial Services Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Maryland",
+      "kind": "jurisdiction",
+      "region": "Maryland",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "MAS",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Banking",
+      "mappedUrl": "https://www.mas.gov.sg/regulation/regulations-guidance-and-licensing"
+    },
+    {
+      "name": "MAS",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Banking",
+      "mappedUrl": "https://www.mas.gov.sg/regulation/consultations"
+    },
+    {
+      "name": "Massachusetts",
+      "kind": "jurisdiction",
+      "region": "Massachusetts",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Mauritius",
+      "kind": "jurisdiction",
+      "region": "Mauritius",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Mauritius Government",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Mexican Federal Competition Commission",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Mexico",
+      "kind": "jurisdiction",
+      "region": "Mexico",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Michigan",
+      "kind": "jurisdiction",
+      "region": "Michigan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Minnesota",
+      "kind": "jurisdiction",
+      "region": "Minnesota",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Mississippi",
+      "kind": "jurisdiction",
+      "region": "Mississippi",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Missouri",
+      "kind": "jurisdiction",
+      "region": "Missouri",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Moldova",
+      "kind": "jurisdiction",
+      "region": "Moldova",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Monaco",
+      "kind": "jurisdiction",
+      "region": "Monaco",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Montana",
+      "kind": "jurisdiction",
+      "region": "Montana",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Morocco",
+      "kind": "jurisdiction",
+      "region": "Morocco",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Myanmar",
+      "kind": "jurisdiction",
+      "region": "Myanmar",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Namibia",
+      "kind": "jurisdiction",
+      "region": "Namibia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "National Bank of Belgium",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Nebraska",
+      "kind": "jurisdiction",
+      "region": "Nebraska",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Nepal",
+      "kind": "jurisdiction",
+      "region": "Nepal",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Netherlands",
+      "kind": "jurisdiction",
+      "region": "Netherlands",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Nevada",
+      "kind": "jurisdiction",
+      "region": "Nevada",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "New Hampshire",
+      "kind": "jurisdiction",
+      "region": "New Hampshire",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "New Jersey",
+      "kind": "jurisdiction",
+      "region": "New Jersey",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "New Mexico",
+      "kind": "jurisdiction",
+      "region": "New Mexico",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "New York",
+      "kind": "jurisdiction",
+      "region": "New York",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "New Zealand",
+      "kind": "jurisdiction",
+      "region": "New Zealand",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "New Zealand Reserve Bank",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "NFA",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Derivatives",
+      "mappedUrl": "https://www.nfa.futures.org/rulebook/rules.aspx?Section=4"
+    },
+    {
+      "name": "Nigeria",
+      "kind": "jurisdiction",
+      "region": "Nigeria",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Nigeria Financial Intelligence Unit",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "North Carolina",
+      "kind": "jurisdiction",
+      "region": "North Carolina",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "North Dakota",
+      "kind": "jurisdiction",
+      "region": "North Dakota",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "North Macedonia",
+      "kind": "jurisdiction",
+      "region": "North Macedonia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Norway",
+      "kind": "jurisdiction",
+      "region": "Norway",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "OCC",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Banking",
+      "mappedUrl": "https://www.occ.gov/topics/regulations-and-interpretations/regulations/index-regulations.html"
+    },
+    {
+      "name": "OECD",
+      "kind": "source",
+      "region": "Global",
+      "category": "Anti-Bribery",
+      "mappedUrl": "https://www.oecd.org/en/topics/policy-issues/anti-corruption-and-integrity.html"
+    },
+    {
+      "name": "OECD",
+      "kind": "source",
+      "region": "Global",
+      "category": "Anti-Bribery",
+      "mappedUrl": "https://www.oecd.org/en/topics/policy-issues/base-erosion-and-profit-shifting.html"
+    },
+    {
+      "name": "Office of the Comptroller of the Currency",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Ohio",
+      "kind": "jurisdiction",
+      "region": "Ohio",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Oklahoma",
+      "kind": "jurisdiction",
+      "region": "Oklahoma",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Oman",
+      "kind": "jurisdiction",
+      "region": "Oman",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Ontario",
+      "kind": "jurisdiction",
+      "region": "Ontario",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Ontario Securities Commission",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Oregon",
+      "kind": "jurisdiction",
+      "region": "Oregon",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Pakistan",
+      "kind": "jurisdiction",
+      "region": "Pakistan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Panama",
+      "kind": "jurisdiction",
+      "region": "Panama",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Paraguay",
+      "kind": "jurisdiction",
+      "region": "Paraguay",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Payment Systems Regulator",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Pennsylvania",
+      "kind": "jurisdiction",
+      "region": "Pennsylvania",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "People's Bank of China",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Peru",
+      "kind": "jurisdiction",
+      "region": "Peru",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Philippines",
+      "kind": "jurisdiction",
+      "region": "Philippines",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Philippines Securities and Exchange Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Poland",
+      "kind": "jurisdiction",
+      "region": "Poland",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Polish Financial Supervision Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Portugal",
+      "kind": "jurisdiction",
+      "region": "Portugal",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "PRA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Prudential",
+      "mappedUrl": "https://www.bankofengland.co.uk/prudential-regulation/publication/supervisory-statements"
+    },
+    {
+      "name": "PRA",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Prudential",
+      "mappedUrl": "https://www.bankofengland.co.uk/prudential-regulation/publication/policy-statements"
+    },
+    {
+      "name": "Puerto Rico",
+      "kind": "jurisdiction",
+      "region": "Puerto Rico",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Qatar",
+      "kind": "jurisdiction",
+      "region": "Qatar",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Quebec",
+      "kind": "jurisdiction",
+      "region": "Quebec",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "RBI",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Banking",
+      "mappedUrl": "https://rbi.org.in/Scripts/NotificationUser.aspx?Mode=0&Id=0"
+    },
+    {
+      "name": "RBI",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Banking",
+      "mappedUrl": "https://rbi.org.in/Scripts/NotificationUser.aspx"
+    },
+    {
+      "name": "Reserve Bank of Australia",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Reserve Bank of India",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Reserve Bank of New Zealand",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Rhode Island",
+      "kind": "jurisdiction",
+      "region": "Rhode Island",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Romania",
+      "kind": "jurisdiction",
+      "region": "Romania",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Romanian National Bank",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "SAMA",
+      "kind": "source",
+      "region": "ME/AF",
+      "category": "Banking",
+      "mappedUrl": "https://www.sama.gov.sa/en-US/Laws/Pages/regulations.aspx"
+    },
+    {
+      "name": "Saudi Arabia",
+      "kind": "jurisdiction",
+      "region": "Saudi Arabia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Saudi Central Bank (SAMA)",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "SEBI",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Securities",
+      "mappedUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=1&ssid=2&smid="
+    },
+    {
+      "name": "SEC",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Securities",
+      "mappedUrl": "https://www.sec.gov/rules/final.shtml"
+    },
+    {
+      "name": "SEC",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Securities",
+      "mappedUrl": "https://www.sec.gov/rules/proposed.shtml"
+    },
+    {
+      "name": "SEC",
+      "kind": "source",
+      "region": "AMER",
+      "category": "Anti-Bribery",
+      "mappedUrl": "https://www.sec.gov/divisions/enforce/fcpa.shtml"
+    },
+    {
+      "name": "Securities and Exchange Board of India",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Securities and Exchange Commission - Philippines",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Securities and Exchange Commission - US",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Securities Commission Malaysia",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Serbia",
+      "kind": "jurisdiction",
+      "region": "Serbia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Serious Fraud Office",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "SFC",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Securities",
+      "mappedUrl": "https://www.sfc.hk/en/Rules-and-Standards/Codes-and-guidelines"
+    },
+    {
+      "name": "SFC",
+      "kind": "source",
+      "region": "APAC",
+      "category": "Securities",
+      "mappedUrl": "https://www.sfc.hk/en/Regulatory-updates"
+    },
+    {
+      "name": "SFO",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Anti-Bribery",
+      "mappedUrl": "https://www.sfo.gov.uk/publications/"
+    },
+    {
+      "name": "Singapore",
+      "kind": "jurisdiction",
+      "region": "Singapore",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Singapore Police Force",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Slovakia",
+      "kind": "jurisdiction",
+      "region": "Slovakia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Slovenia",
+      "kind": "jurisdiction",
+      "region": "Slovenia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "South Africa",
+      "kind": "jurisdiction",
+      "region": "South Africa",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "South African Reserve Bank",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "South Carolina",
+      "kind": "jurisdiction",
+      "region": "South Carolina",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "South Dakota",
+      "kind": "jurisdiction",
+      "region": "South Dakota",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "South Korea",
+      "kind": "jurisdiction",
+      "region": "South Korea",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "South Korea Financial Services Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Spain",
+      "kind": "jurisdiction",
+      "region": "Spain",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Spanish Data Protection Agency",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Spanish National Securities Market Commission",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Sri Lanka",
+      "kind": "jurisdiction",
+      "region": "Sri Lanka",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Sri Lanka Securities and Exchange Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Sweden",
+      "kind": "jurisdiction",
+      "region": "Sweden",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Swedish Financial Supervisory Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Swiss Financial Market Supervisory Authority",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Switzerland",
+      "kind": "jurisdiction",
+      "region": "Switzerland",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Taiwan Financial Supervisory Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Tajikistan",
+      "kind": "jurisdiction",
+      "region": "Tajikistan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Tennessee",
+      "kind": "jurisdiction",
+      "region": "Tennessee",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Texas",
+      "kind": "jurisdiction",
+      "region": "Texas",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Thailand",
+      "kind": "jurisdiction",
+      "region": "Thailand",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Thailand Securities and Exchange Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Tunisia",
+      "kind": "jurisdiction",
+      "region": "Tunisia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Turkey",
+      "kind": "jurisdiction",
+      "region": "Turkey",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Turkish Banking Regulation and Supervision Agency",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Turkish Capital Markets Board",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Turkmenistan",
+      "kind": "jurisdiction",
+      "region": "Turkmenistan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "UAE",
+      "kind": "jurisdiction",
+      "region": "UAE",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "UAE Central Bank",
+      "kind": "source",
+      "region": "ME/AF",
+      "category": "Banking",
+      "mappedUrl": "https://www.centralbank.ae/en/regulatory-framework"
+    },
+    {
+      "name": "UAE Securities and Commodities Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Uganda",
+      "kind": "jurisdiction",
+      "region": "Uganda",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Uganda Revenue Authority",
+      "kind": "additional",
+      "region": "ME/AF",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "UK",
+      "kind": "jurisdiction",
+      "region": "UK",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "UK Financial Intelligence Unit",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "UK Government",
+      "kind": "source",
+      "region": "UK/EU",
+      "category": "Anti-Bribery",
+      "mappedUrl": "https://www.legislation.gov.uk/ukpga/2010/23/contents"
+    },
+    {
+      "name": "Ukraine National Bank",
+      "kind": "additional",
+      "region": "UK/EU",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "United Arab Emirates",
+      "kind": "jurisdiction",
+      "region": "United Arab Emirates",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "jurisdiction",
+      "region": "United Kingdom",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Uruguay",
+      "kind": "jurisdiction",
+      "region": "Uruguay",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "US Department of Justice",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "US Department of the Treasury",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "US Office of Foreign Assets Control",
+      "kind": "additional",
+      "region": "AMER",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Utah",
+      "kind": "jurisdiction",
+      "region": "Utah",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Uzbekistan",
+      "kind": "jurisdiction",
+      "region": "Uzbekistan",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Vermont",
+      "kind": "jurisdiction",
+      "region": "Vermont",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Vietnam",
+      "kind": "jurisdiction",
+      "region": "Vietnam",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Vietnam State Securities Commission",
+      "kind": "additional",
+      "region": "APAC",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Virginia",
+      "kind": "jurisdiction",
+      "region": "Virginia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Washington",
+      "kind": "jurisdiction",
+      "region": "Washington",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "West Virginia",
+      "kind": "jurisdiction",
+      "region": "West Virginia",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Wisconsin",
+      "kind": "jurisdiction",
+      "region": "Wisconsin",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "World Bank",
+      "kind": "source",
+      "region": "Global",
+      "category": "Banking",
+      "mappedUrl": "https://www.worldbank.org/en/topic/financialsector/publication"
+    },
+    {
+      "name": "World Bank",
+      "kind": "additional",
+      "region": "Global",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Wyoming",
+      "kind": "jurisdiction",
+      "region": "Wyoming",
+      "category": "All",
+      "mappedUrl": ""
+    },
+    {
+      "name": "Zambia",
+      "kind": "jurisdiction",
+      "region": "Zambia",
+      "category": "All",
+      "mappedUrl": ""
+    }
+  ]
+}

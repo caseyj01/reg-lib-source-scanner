@@ -29,7 +29,7 @@ export default function App() {
   const [libraryFile,  setLibraryFile]  = useState('');
   const [region,       setRegion]       = useState('Global');
   const [category,     setCategory]     = useState('All');
-  const [deepOn,       setDeepOn]       = useState(false);
+  const deepOn = true;
   const [scanning,     setScanning]     = useState(false);
   const [scanMsg,      setScanMsg]      = useState('');
   const [totalIndexed, setTotalIndexed] = useState(0);
@@ -123,9 +123,9 @@ export default function App() {
     // 3. Tag with dedup
     let tagged = tagResults(filtered, libraryItems);
 
-    // 4. Deep search (if enabled)
-    if (deepOn && !stopRef.current) {
-      setScanMsg('Running deep web search via Anthropic API…');
+    // 4. Deep search (always on)
+    if (!stopRef.current) {
+      setScanMsg('Running deep web search via Gemini…');
       try {
         const knownTitles = libraryItems.map(i => i.title);
         const deepResults = await deepSearch({ query, knownTitles, region, category });
@@ -261,16 +261,14 @@ export default function App() {
           <path d="M7 4v3l2 1.5" stroke="#6b7280" strokeWidth="1.3" strokeLinecap="round" />
         </svg>
         <span className="toggle-label">Deep web search</span>
-        <span className="api-badge">Anthropic API</span>
-        <button
-          className={`toggle-switch ${deepOn ? 'on' : ''}`}
-          onClick={() => setDeepOn(v => !v)}
-          aria-label="Toggle deep search"
-          role="switch"
-          aria-checked={deepOn}
+        <span className="api-badge">Gemini</span>
+        <span
+          className="api-badge"
+          title="Deep web search is always enabled"
+          style={{ opacity: 0.8 }}
         >
-          <span className="toggle-knob" />
-        </button>
+          Always on
+        </span>
       </div>
 
       {/* ── CATEGORY FILTER CHIPS ───────────────────────────────────────── */}
